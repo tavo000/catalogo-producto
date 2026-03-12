@@ -1,84 +1,84 @@
 <!DOCTYPE html>
 <html>
 
-<cabeza>
-<meta conjunto de caracteres="UTF-8">
-<meta name="viewport" content="width=ancho-del-dispositivo, escala-inicial=1.0">
-<title>Catálogo</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalog</title>
 
-<estilo>
+<style>
 
-cuerpo{
-familia de fuentes:Arial;
-fondo:#f4f6f9;
-margen:0;
-relleno:0;
+body{
+font-family:Arial;
+background:#f4f6f9;
+margin:0;
+padding:0;
 }
 
 h1{
-relleno:20px;
-margen:0;
-fondo:#1f2937;
-color:blanco;
+padding:20px;
+margin:0;
+background:#1f2937;
+color:white;
 }
 
-/* CATEGORÍAS DE CONTENDIENTES */
+/* CATEGORY CONTAINER */
 
 #categorias{
-relleno:15px;
+padding:15px;
 display:flex;
-flex-wrap:envolver;
+flex-wrap:wrap;
 }
 
-/* ESCRITORIO DE BOTONES */
+/* CATEGORY BUTTONS */
 
-#categorias botón{
-margen:5px;
-relleno:10px 18px;
-radio del borde:8px;
-frontera:ninguna;
-fondo:#374151;
-color:blanco;
-cursor:puntero;
-font-weight:negrita;
-transición:0,3 s;
+#categorias button{
+margin:5px;
+padding:10px 18px;
+border-radius:8px;
+border:none;
+background:#374151;
+color:white;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
 }
 
-#categorias botón:hover{
-fondo:#2563eb;
+#categorias button:hover{
+background:#2563eb;
 }
 
-#categorias botón.activo{
-fondo:#22c55e;
+#categorias button.active{
+background:#22c55e;
 }
 
-/* SELECTOR MÓVIL */
+/* MOBILE SELECT */
 
 #categoriaSelect{
-display:ninguno;
-ancho:90%;
-margen:15px;
-relleno:12px;
-tamaño de fuente:16px;
-radio del borde:8px;
+display:none;
+width:90%;
+margin:15px;
+padding:12px;
+font-size:16px;
+border-radius:8px;
 }
 
-/* PRODUCTOS DE CUADRÍCULA */
+/* PRODUCT GRID */
 
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-brecha:25px;
-relleno:25px;
+gap:25px;
+padding:25px;
 }
 
-.tarjeta{
-fondo:blanco;
-relleno:15px;
-radio del borde: 10px;
-alineación de texto:centro;
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
 box-shadow:0 8px 18px rgba(0,0,0,0.08);
-transición: 0,25 s;
+transition:0.25s;
 }
 
 .card:hover{
@@ -86,24 +86,24 @@ transform:translateY(-5px);
 box-shadow:0 12px 25px rgba(0,0,0,0.15);
 }
 
-.tarjeta img{
-ancho:100%;
-altura:160px;
-ajuste-objeto:contener;
+.card img{
+width:100%;
+height:160px;
+object-fit:contain;
 }
 
-.precio{
+.price{
 color:#16a34a;
-font-weight:negrita;
-tamaño de fuente:18px;
+font-weight:bold;
+font-size:18px;
 }
 
-/* SENSIBLE */
+/* RESPONSIVE */
 
-@media (ancho máximo: 768 px){
+@media (max-width:768px){
 
 #categorias{
-display:ninguno;
+display:none;
 }
 
 #categoriaSelect{
@@ -112,307 +112,174 @@ display:block;
 
 .grid{
 grid-template-columns:repeat(2,1fr);
-brecha:12px;
-relleno:12px;
+gap:12px;
+padding:12px;
 }
 
-.tarjeta img{
-altura:140px;
+.card img{
+height:140px;
 }
 
 }
 
-.comprar-btn{
-display:bloque en línea;
-margen superior:10px;
-relleno:10px 14px;
-fondo:#25D366;
-color:blanco;
-decoración de texto:ninguna;
-radio del borde:6px;
-font-weight:negrita;
+.buy-btn{
+display:inline-block;
+margin-top:10px;
+padding:10px 14px;
+background:#25D366;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
 }
 
 .buy-btn:hover{
-fondo:#1ebe5d;
+background:#1ebe5d;
 }
 
-/*BUSCADOR*/
+/* SEARCH */
 
-.buscador-contenedor{
-relleno:20px;
+.search-container{
+padding:20px;
 display:flex;
-justificar-contenido:centro;
+justify-content:center;
 }
 
-#buscador{
-ancho:60%;
-ancho máximo: 500px;
-relleno:12px 15px;
-radio del borde:8px;
-borde:1px sólido #ddd;
-tamaño de fuente:16px;
-esquema:ninguno;
+#search{
+width:60%;
+max-width:500px;
+padding:12px 15px;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:16px;
+outline:none;
 }
 
-#buscador:enfoque{
-borde:1px sólido #2563eb;
+#search:focus{
+border:1px solid #2563eb;
 box-shadow:0 0 4px rgba(37,99,235,0.3);
 }
 
-/* MÓVIL */
-
-@media (ancho máximo: 768 px){
-
-#buscador{
-ancho:90%;
-}
-
-}
-
-/* BOTÓN WHATSAPP FLOTANTE */
+/* FLOAT WHATSAPP */
 
 .whatsapp-float{
-posición:fija;
-abajo:20px;
-derecha:20px;
-ancho:60px;
-altura:60px;
-fondo:#25D366;
-color:blanco;
-radio fronterizo: 50%;
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+background:#25D366;
+color:white;
+border-radius:50%;
 display:flex;
-align-items:centro;
-justificar-contenido:centro;
-tamaño de fuente:28px;
-decoración de texto:ninguna;
+align-items:center;
+justify-content:center;
+font-size:28px;
+text-decoration:none;
 box-shadow:0 8px 20px rgba(0,0,0,0.25);
-índice z:999;
+z-index:999;
 }
 
 .whatsapp-float:hover{
-fondo:#1ebe5d;
-}  
-
-#ordenar{
-margen izquierdo:15px;
-relleno:12px;
-radio del borde:8px;
-borde:1px sólido #ddd;
-tamaño de fuente:15px;
+background:#1ebe5d;
 }
 
-@media (ancho máximo: 768 px){
-
-.buscador-contenedor{
-dirección flexible:columna;
-brecha:10px;
-}
-
-#ordenar{
-margen izquierdo:0;
-ancho:90%;
-}
-
-}
-
-.carrito-float{
-posición:fija;
-abajo:100px;
-derecha:20px;
-fondo:#2563eb;
-color:blanco;
-relleno:15px 18px;
-radio del borde: 50px;
-font-weight:negrita;
-cursor:puntero;
+.cart-float{
+position:fixed;
+bottom:100px;
+right:20px;
+background:#2563eb;
+color:white;
+padding:15px 18px;
+border-radius:50px;
+font-weight:bold;
+cursor:pointer;
 box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
-.carrito-float span{
-fondo:blanco;
-color:negro;
-relleno:3px 7px;
-radio del borde: 10px;
-margen izquierdo:5px;
+.cart-float span{
+background:white;
+color:black;
+padding:3px 7px;
+border-radius:10px;
+margin-left:5px;
 }
-  
-</estilo>
 
-</cabeza>
+</style>
 
-<cuerpo>
+</head>
 
-<h1>Catálogo de productos</h1>
+<body>
 
-<div class="buscador-container">
+<h1>Product Catalog</h1>
 
-<entrada
-tipo="texto"
-id="buscador"
-placeholder="🔎 Buscar productos..."
-onkeyup="buscarProducto()"
+<div class="search-container">
+
+<input
+type="text"
+id="search"
+placeholder="Search products..."
+onkeyup="searchProduct()"
 />
 
-<seleccione id="ordenar" onchange="ordenarProductos()">
-
-<option value="">Ordenar por</option>
-<option value="mayor">Precio del alcalde</option>
-<option value="menor">Menor precio</option>
-<option value="az">AZ</option>
-<option value="za">ZA</option>
-
-</seleccionar>
+<select id="sort" onchange="sortProducts()">
+<option value="">Sort by</option>
+<option value="higher">Higher price</option>
+<option value="lower">Lower price</option>
+<option value="az">A-Z</option>
+<option value="za">Z-A</option>
+</select>
 
 </div>
 
 <select id="categoriaSelect"></select>
 
-<div id="categorías"></div>
+<div id="categorias"></div>
 
 <div id="productos" class="grid"></div>
 
 <script>
 
-const params = new URLSearchParams(ventana.ubicación.búsqueda)
-const categoriaURL = params.get("categoria")  
-
-deje que las categorías sean = {}
-let carro = []
+let categorias = {}
+let cart = []
 
 fetch("./productos.json")
 .then(r=>r.json())
-.then(datos=>{
+.then(data=>{
 
-datos.paraCada(p => {
+data.forEach(p=>{
 
-let cat = p.category || "Otros"
+let cat = p.category || "Other"
 
-cat = cat.toLowerCase().trim()
+if(!categorias[cat]) categorias[cat] = []
 
-if(cat.includes("combo")) cat = "Combos"
-else if(cat.includes("electro")) cat = "Electrodomísticos"
-else if(cat.includes("belleza")) cat = "Belleza"
-else if(cat.includes("hogar")) cat = "Hogar"
-else if(cat.includes("bazar")) cat = "Bazar"
-else if(cat.includes("audio") || cat.includes("electron")) cat = "Electrónica y Audio"
-else if(cat.includes("celular")) cat = "Celulares"
-else if(cat.includes("computar")) cat = "Computación"
-else if(cat.includes("herramient")) cat = "Herramientas"
-else if(cat.includes("librer")) cat = "Librería"
-else if(cat.includes("juguete")) cat = "Juguetes"
-else if(cat.includes("pesca")) cat = "Pesca"
-else if(cat.includes("zapat")) cat = "Zapatillas"
-else if(cat.includes("vehiculo")) cat = "Accesorios Vehículos"
-de lo contrario gato = "Otros"
-
-p.categoría = gato
-
-si(!categorias[gato]) categorias[gato] = []
-
-categorias[gato].push(p)
+categorias[cat].push(p)
 
 })
 
-const ordenCategorías = [
-
-"Combos",
-"Electrodomísticos",
-"Belleza",
-"Hogar",
-"Bazar",
-"Electrónica y Audio",
-„Celulares",
-"Computación",
-„Herramientas",
-„Librería",
-"Juguetes",
-"Pesca",
-„Zapatillas",
-"Accesorios Vehículos",
-„Otros"
-
-]
-
-const catDiv = document.getElementById("categorías")
-const select = document.getElementById("categoriaSelect")
-
-ordenCategorías.forEach(cat => {
-
-if(categorías[gato]){
-
-const btn = document.createElement("botón")
-btn.textContent = gato
-btn.onclick = () => mostrarCategoria(cat)
-
-catDiv.appendChild(btn)
-
-const opt = document.createElement("opción")
-opt.value = gato
-opt.textContent = gato
-
-seleccione.appendChild(opt)
-
-}
+mostrarCategoria(Object.keys(categorias)[0])
 
 })
 
-select.onchange = función(){
-mostrarCategoria(este.valor)
-}
-
-if(categoriaURL && categorias[categoriaURL]){
-
-másrarCategoria(categoriaURL)
-seleccionar.valor=categoriaURL
-
-}else if(categorías["Combos"]){
-
-mostrarCategoria("Combos")
-select.value="Combos"
-
-}else{
-
-const primera = Object.keys(categorías)[0]
-mostrarCategoria(primera)
-seleccionar.valor=primera
-
-}
-
-})
-
-función másrarCategoria(cat){
+function mostrarCategoria(cat){
 
 const contenedor = document.getElementById("productos")
 
 contenedor.innerHTML = ""
-
-document.querySelectorAll("#categorias botón").forEach(b=>{
-b.classList.remove("activo")
-
-if(b.textContent === cat){
-b.classList.add("activo")
-}
-
-})
 
 categorias[cat].forEach(p => {
 
 contenedor.innerHTML += `
-<div class="tarjeta">
+<div class="card">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}&cat=${encodeURIComponent(cat)}">
-
-<img src="${p.image}" cargando="perezoso">
-
-</a>
+<img src="${p.image}" loading="lazy">
 
 <h4>${p.name}</h4>
-<p class="precio">${p.precio}</p>
+<p class="price">${p.price}</p>
 
-<button class="buy-btn" onclick="agregarCarrito('${p.name}','${p.price}','${p.image}')">
-Agregar al carro
-</botón>
+<button class="buy-btn" onclick="addCart('${p.name}','${p.price}')">
+Add to cart
+</button>
 
 </div>
 `
@@ -421,210 +288,45 @@ Agregar al carro
 
 }
 
-función buscarProducto(){
+function addCart(nombre,precio){
 
-const texto = document.getElementById("buscador").value.toLowerCase()
+const producto = cart.find(p=>p.name===nombre)
 
-const contenedor = document.getElementById("productos")
-
-contenedor.innerHTML = ""
-
-Objeto.valores(categorías).flat().forEach(p=>{
-
-if(p.name.toLowerCase().includes(texto)){
-
-contenedor.innerHTML += `
-<div class="tarjeta">
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}">
-<img src="${p.image}" cargando="perezoso">
-</a>
-<h4>${p.name}</h4>
-<p class="precio">${p.precio}</p>
-
-<button class="buy-btn" onclick="agregarCarrito('${p.name}','${p.price}','${p.image}')">
-Agregar al carro
-</botón>
-
-</div>
-`
-
-}
-
-})
-
-}
-
-función ordenarProductos(){
-
-const tipo = document.getElementById("ordenar").value
-
-deje que productos = Object.values(categorías).flat()
-
-if(tipo === "alcalde"){
-productos.sort((a,b)=>parsePrecio(b.precio)-parsePrecio(a.precio))
-}
-
-if(tipo === "menor"){
-productos.sort((a,b)=>parsePrecio(a.precio)-parsePrecio(b.precio))
-}
-
-if(tipo === "az"){
-productos.sort((a,b)=>a.name.localeCompare(b.name))
-}
-
-if(tipo === "za"){
-productos.sort((a,b)=>b.name.localeCompare(a.name))
-}
-
-másrarLista(productos)
-
-}
-
-función parsePrecio(precio){
-
-devuelve Número(
-precio.replace("$","")
-.replace(/\./g,"")
-.reemplazar(",",".")
-)
-
-}
-
-función másrarLista(lista){
-
-const contenedor = document.getElementById("productos")
-contenedor.innerHTML=""
-
-lista.forEach(p=>{
-
-contenedor.innerHTML+=`
-<div class="tarjeta">
-
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}">
-
-<img src="${p.image}" cargando="perezoso">
-
-</a>
-
-<h4>${p.name}</h4>
-<p class="precio">${p.precio}</p>
-
-<button class="buy-btn" onclick="agregarCarrito('${p.name}','${p.price}','${p.image}')">
-Agregar al carro
-</botón>
-
-función agregarCarrito(nombre,precio,imagen){
-
-const producto = carro.find(p => p.nombre === nombre)
-
-si(producto){
+if(producto){
 
 producto.cantidad++
 
 }else{
 
-carro.push({
-nombre:nombre,
-precio:precio,
-imagen:imagen,
+cart.push({
+name:nombre,
+price:precio,
 cantidad:1
 })
 
 }
 
-actualizarContador()
+document.getElementById("contadorCarrito").innerText = cart.length
 
 }
 
-función actualizarContador(){
-
-document.getElementById("contadorCarrito").innerText = carro.length
-
-}
-
-</div>
-`
-
-})
-
-}
-
-función abrirCarrito(){
-
-const panel = document.getElementById("carritoPanel")
-
-panel.style.display = panel.style.display === "ninguno" ? "bloque": "ninguno"
-
-mostrarCarrito()
-
-}
-
-función másrarCarrito(){
-
-const contenedor = document.getElementById("listaCarrito")
-
-contenedor.innerHTML=""
-
-carro.forEach(p=>{
-
-contenedor.innerHTML += `
-<div style="margen inferior:10px;borde inferior:1px sólido #eee;relleno inferior:10px;">
-<b>${p.name}</b><br>
-Cantidad: ${p.cantidad}<br>
-Precio: ${p.price}
-</div>
-`
-
-})
-
-}
-
-función enviarPedido(){
-
-let mensaje = "Hola quiero comprar:%0A%0A"
-
-carro.forEach(p=>{
-
-mensaje += `${p.cantidad} x ${p.name}%0A`
-
-})
-
-ventana.abrir(`https://wa.me/5493401415127?text=${mensaje}`)
-
-}
-  
 </script>
+
 <a
-href="https://wa.me/5493401415127?text=Hola%20quiero%20ver%20el%20catalogo"
-clase="whatsapp-float"
-objetivo="_en blanco"
+href="https://wa.me/5493401415127"
+class="whatsapp-float"
+target="_blank"
 >
-
 💬
+</a>
 
-</a>  
-
-<a class="carrito-float" onclick="abrirCarrito()">
+<a class="cart-float">
 🛒 <span id="contadorCarrito">0</span>
 </a>
 
-<div id="carritoPanel" style="display:none; posición:fija; derecha:0; arriba:0; ancho:350px; alto:100%; fondo:blanco; caja-sombra:-5px 0 20px rgba(0,0,0,0.2); relleno:20px; desbordamiento:auto;">
-
-<h2>Tu carro</h2>
-
-<div id="listaCarrito"></div>
-
-<button onclick="enviarPedido()" style="margin-top:20px;padding:12px;background:#25D366;color:white;border:none;border-radius:6px;font-weight:bold;width:100%;">
-Enviar pedido por WhatsApp
-</botón>
-
-</div>
-  
-</cuerpo>
+</body>
 
 </html>
-
-
 
 
 
