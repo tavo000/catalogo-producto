@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catalog</title>
+<title>Catálogo de productos</title>
 
 <style>
 
@@ -22,7 +22,7 @@ background:#1f2937;
 color:white;
 }
 
-/* CATEGORY CONTAINER */
+/* CONTENEDOR CATEGORIAS */
 
 #categorias{
 padding:15px;
@@ -30,7 +30,7 @@ display:flex;
 flex-wrap:wrap;
 }
 
-/* CATEGORY BUTTONS */
+/* BOTONES CATEGORIA */
 
 #categorias button{
 margin:5px;
@@ -52,7 +52,7 @@ background:#2563eb;
 background:#22c55e;
 }
 
-/* MOBILE SELECT */
+/* SELECTOR MOBILE */
 
 #categoriaSelect{
 display:none;
@@ -63,7 +63,7 @@ font-size:16px;
 border-radius:8px;
 }
 
-/* PRODUCT GRID */
+/* GRID PRODUCTOS */
 
 .grid{
 display:grid;
@@ -122,27 +122,31 @@ height:140px;
 
 }
 
+/* BOTON AGREGAR */
+
 .buy-btn{
 display:inline-block;
 margin-top:10px;
 padding:10px 14px;
 background:#25D366;
 color:white;
-text-decoration:none;
+border:none;
 border-radius:6px;
 font-weight:bold;
+cursor:pointer;
 }
 
 .buy-btn:hover{
 background:#1ebe5d;
 }
 
-/* SEARCH */
+/* BUSCADOR */
 
 .search-container{
 padding:20px;
 display:flex;
 justify-content:center;
+gap:10px;
 }
 
 #search{
@@ -160,7 +164,13 @@ border:1px solid #2563eb;
 box-shadow:0 0 4px rgba(37,99,235,0.3);
 }
 
-/* FLOAT WHATSAPP */
+#sort{
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+/* WHATSAPP */
 
 .whatsapp-float{
 position:fixed;
@@ -183,6 +193,8 @@ z-index:999;
 .whatsapp-float:hover{
 background:#1ebe5d;
 }
+
+/* CARRITO */
 
 .cart-float{
 position:fixed;
@@ -211,23 +223,25 @@ margin-left:5px;
 
 <body>
 
-<h1>Product Catalog</h1>
+<h1>Catálogo de productos</h1>
 
 <div class="search-container">
 
 <input
 type="text"
 id="search"
-placeholder="Search products..."
+placeholder="🔎 Buscar productos..."
 onkeyup="searchProduct()"
 />
 
 <select id="sort" onchange="sortProducts()">
-<option value="">Sort by</option>
-<option value="higher">Higher price</option>
-<option value="lower">Lower price</option>
+
+<option value="">Ordenar por</option>
+<option value="higher">Precio más alto</option>
+<option value="lower">Precio más bajo</option>
 <option value="az">A-Z</option>
 <option value="za">Z-A</option>
+
 </select>
 
 </div>
@@ -249,7 +263,7 @@ fetch("./productos.json")
 
 data.forEach(p=>{
 
-let cat = p.category || "Other"
+let cat = p.category || "Otros"
 
 if(!categorias[cat]) categorias[cat] = []
 
@@ -265,24 +279,59 @@ function mostrarCategoria(cat){
 
 const contenedor = document.getElementById("productos")
 
-contenedor.innerHTML = ""
+contenedor.innerHTML=""
 
-categorias[cat].forEach(p => {
+categorias[cat].forEach(p=>{
 
-contenedor.innerHTML += `
+contenedor.innerHTML+=`
 <div class="card">
 
 <img src="${p.image}" loading="lazy">
 
 <h4>${p.name}</h4>
+
 <p class="price">${p.price}</p>
 
 <button class="buy-btn" onclick="addCart('${p.name}','${p.price}')">
-Add to cart
+Agregar al carrito
 </button>
 
 </div>
 `
+
+})
+
+}
+
+function searchProduct(){
+
+const texto = document.getElementById("search").value.toLowerCase()
+
+const contenedor = document.getElementById("productos")
+
+contenedor.innerHTML=""
+
+Object.values(categorias).flat().forEach(p=>{
+
+if(p.name.toLowerCase().includes(texto)){
+
+contenedor.innerHTML+=`
+<div class="card">
+
+<img src="${p.image}">
+
+<h4>${p.name}</h4>
+
+<p class="price">${p.price}</p>
+
+<button class="buy-btn" onclick="addCart('${p.name}','${p.price}')">
+Agregar al carrito
+</button>
+
+</div>
+`
+
+}
 
 })
 
@@ -313,7 +362,7 @@ document.getElementById("contadorCarrito").innerText = cart.length
 </script>
 
 <a
-href="https://wa.me/5493401415127"
+href="https://wa.me/5493401415127?text=Hola%20quiero%20comprar"
 class="whatsapp-float"
 target="_blank"
 >
@@ -327,11 +376,6 @@ target="_blank"
 </body>
 
 </html>
-
-
-
-
-
 
 
 
