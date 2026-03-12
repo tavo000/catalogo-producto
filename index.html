@@ -2,8 +2,10 @@
 <html>
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Catálogo de productos</title>
 
 <style>
@@ -15,206 +17,174 @@ margin:0;
 padding:0;
 }
 
-h1{
-padding:20px;
-margin:0;
+/* HEADER */
+
+header{
 background:#1f2937;
 color:white;
+padding:20px;
+font-size:26px;
+font-weight:bold;
 }
 
-/* CONTENEDOR CATEGORIAS */
+/* CONTENEDOR PRINCIPAL */
 
-#categorias{
-padding:15px;
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* BUSCADOR */
+
+.search-bar{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.search-bar input{
+
+flex:1;
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+font-size:16px;
+
+}
+
+.search-bar select{
+
+padding:12px;
+border-radius:8px;
+border:1px solid #ddd;
+
+}
+
+/* CATEGORIAS */
+
+.categorias{
+
+margin-bottom:20px;
+
+}
+
+.categorias h3{
+
+margin-bottom:10px;
+
+}
+
+.categoria-lista{
+
 display:flex;
 flex-wrap:wrap;
+gap:10px;
+
 }
 
-/* BOTONES CATEGORIA */
+.categoria-lista button{
 
-#categorias button{
-margin:5px;
-padding:10px 18px;
-border-radius:8px;
+padding:8px 14px;
+border-radius:20px;
 border:none;
-background:#374151;
-color:white;
+background:#e5e7eb;
 cursor:pointer;
-font-weight:bold;
-transition:0.3s;
+
 }
 
-#categorias button:hover{
-background:#2563eb;
-}
+.categoria-lista button:hover{
 
-#categorias button.active{
-background:#22c55e;
-}
+background:#d1d5db;
 
-/* SELECTOR MOBILE */
-
-#categoriaSelect{
-display:none;
-width:90%;
-margin:15px;
-padding:12px;
-font-size:16px;
-border-radius:8px;
 }
 
 /* GRID PRODUCTOS */
 
 .grid{
+
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
-padding:25px;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
+
 }
+
+/* TARJETA */
 
 .card{
-background:white;
-padding:15px;
-border-radius:10px;
-text-align:center;
-box-shadow:0 8px 18px rgba(0,0,0,0.08);
-transition:0.25s;
-}
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 12px 25px rgba(0,0,0,0.15);
+background:white;
+border-radius:10px;
+padding:15px;
+text-align:center;
+box-shadow:0 6px 15px rgba(0,0,0,0.08);
+
 }
 
 .card img{
+
 width:100%;
 height:160px;
 object-fit:contain;
+
+}
+
+.card h4{
+
+font-size:16px;
+margin:10px 0;
+
 }
 
 .price{
+
 color:#16a34a;
 font-weight:bold;
 font-size:18px;
-}
-
-/* RESPONSIVE */
-
-@media (max-width:768px){
-
-#categorias{
-display:none;
-}
-
-#categoriaSelect{
-display:block;
-}
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-padding:12px;
-}
-
-.card img{
-height:140px;
-}
 
 }
 
-/* BOTON AGREGAR */
+.buy{
 
-.buy-btn{
-display:inline-block;
 margin-top:10px;
-padding:10px 14px;
-background:#25D366;
-color:white;
+background:#22c55e;
 border:none;
-border-radius:6px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.buy-btn:hover{
-background:#1ebe5d;
-}
-
-/* BUSCADOR */
-
-.search-container{
-padding:20px;
-display:flex;
-justify-content:center;
-gap:10px;
-}
-
-#search{
-width:60%;
-max-width:500px;
-padding:12px 15px;
-border-radius:8px;
-border:1px solid #ddd;
-font-size:16px;
-outline:none;
-}
-
-#search:focus{
-border:1px solid #2563eb;
-box-shadow:0 0 4px rgba(37,99,235,0.3);
-}
-
-#sort{
-padding:12px;
-border-radius:8px;
-border:1px solid #ddd;
-}
-
-/* WHATSAPP */
-
-.whatsapp-float{
-position:fixed;
-bottom:20px;
-right:20px;
-width:60px;
-height:60px;
-background:#25D366;
 color:white;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-text-decoration:none;
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
-z-index:999;
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+
 }
 
-.whatsapp-float:hover{
-background:#1ebe5d;
+.buy:hover{
+
+background:#16a34a;
+
 }
 
 /* CARRITO */
 
-.cart-float{
+.cart{
+
 position:fixed;
-bottom:100px;
 right:20px;
+bottom:80px;
 background:#2563eb;
 color:white;
-padding:15px 18px;
-border-radius:50px;
-font-weight:bold;
+padding:14px 18px;
+border-radius:40px;
 cursor:pointer;
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
+
 }
 
-.cart-float span{
+.cart span{
+
 background:white;
 color:black;
-padding:3px 7px;
+padding:3px 8px;
 border-radius:10px;
 margin-left:5px;
+
 }
 
 </style>
@@ -223,22 +193,23 @@ margin-left:5px;
 
 <body>
 
-<h1>Catálogo de productos</h1>
+<header>
 
-<div class="search-container">
+Catálogo de productos
 
-<input
-type="text"
-id="search"
-placeholder="🔎 Buscar productos..."
-onkeyup="searchProduct()"
-/>
+</header>
 
-<select id="sort" onchange="sortProducts()">
+<div class="container">
+
+<div class="search-bar">
+
+<input type="text" placeholder="🔎 Buscar productos..." id="search">
+
+<select id="sort">
 
 <option value="">Ordenar por</option>
-<option value="higher">Precio más alto</option>
-<option value="lower">Precio más bajo</option>
+<option value="mayor">Precio más alto</option>
+<option value="menor">Precio más bajo</option>
 <option value="az">A-Z</option>
 <option value="za">Z-A</option>
 
@@ -246,142 +217,127 @@ onkeyup="searchProduct()"
 
 </div>
 
-<select id="categoriaSelect"></select>
+<div class="categorias">
 
-<div id="categorias"></div>
+<h3>Categorías</h3>
 
-<div id="productos" class="grid"></div>
+<div class="categoria-lista" id="categoriaLista"></div>
+
+</div>
+
+<div class="grid" id="productos"></div>
+
+</div>
+
+<div class="cart">
+
+🛒 <span id="cartCount">0</span>
+
+</div>
 
 <script>
 
-let categorias = {}
-let cart = []
+let productos=[]
+let carrito=[]
+let categorias={}
 
-fetch("./productos.json")
+fetch("productos.json")
+
 .then(r=>r.json())
+
 .then(data=>{
+
+productos=data
 
 data.forEach(p=>{
 
-let cat = p.category || "Otros"
+let cat=p.category || "Otros"
 
-if(!categorias[cat]) categorias[cat] = []
+if(!categorias[cat]) categorias[cat]=[]
 
 categorias[cat].push(p)
 
 })
 
-mostrarCategoria(Object.keys(categorias)[0])
+crearCategorias()
+
+mostrarProductos(data)
 
 })
 
-function mostrarCategoria(cat){
+function crearCategorias(){
 
-const contenedor = document.getElementById("productos")
+let cont=document.getElementById("categoriaLista")
 
-contenedor.innerHTML=""
+Object.keys(categorias).forEach(cat=>{
 
-categorias[cat].forEach(p=>{
+let btn=document.createElement("button")
 
-contenedor.innerHTML+=`
-<div class="card">
+btn.innerText=cat
 
-<img src="${p.image}" loading="lazy">
+btn.onclick=()=>mostrarProductos(categorias[cat])
 
-<h4>${p.name}</h4>
-
-<p class="price">${p.price}</p>
-
-<button class="buy-btn" onclick="addCart('${p.name}','${p.price}')">
-Agregar al carrito
-</button>
-
-</div>
-`
+cont.appendChild(btn)
 
 })
 
 }
 
-function searchProduct(){
+function mostrarProductos(lista){
 
-const texto = document.getElementById("search").value.toLowerCase()
+let cont=document.getElementById("productos")
 
-const contenedor = document.getElementById("productos")
+cont.innerHTML=""
 
-contenedor.innerHTML=""
+lista.forEach(p=>{
 
-Object.values(categorias).flat().forEach(p=>{
+cont.innerHTML+=`
 
-if(p.name.toLowerCase().includes(texto)){
-
-contenedor.innerHTML+=`
 <div class="card">
 
 <img src="${p.image}">
 
 <h4>${p.name}</h4>
 
-<p class="price">${p.price}</p>
+<div class="price">${p.price}</div>
 
-<button class="buy-btn" onclick="addCart('${p.name}','${p.price}')">
+<button class="buy" onclick="addCart('${p.name}')">
+
 Agregar al carrito
+
 </button>
 
 </div>
-`
 
-}
+`
 
 })
 
 }
 
-function addCart(nombre,precio){
+function addCart(nombre){
 
-const producto = cart.find(p=>p.name===nombre)
+let item=carrito.find(p=>p.name===nombre)
 
-if(producto){
+if(item){
 
-producto.cantidad++
+item.qty++
 
 }else{
 
-cart.push({
-name:nombre,
-price:precio,
-cantidad:1
-})
+carrito.push({name:nombre,qty:1})
 
 }
 
-document.getElementById("contadorCarrito").innerText = cart.length
+document.getElementById("cartCount").innerText=carrito.length
 
 }
 
 </script>
 
-<a
-href="https://wa.me/5493401415127?text=Hola%20quiero%20comprar"
-class="whatsapp-float"
-target="_blank"
->
-💬
-</a>
-
-<a class="cart-float">
-🛒 <span id="contadorCarrito">0</span>
-</a>
-
 </body>
 
 </html>
-
-
-
-
-
-
 
 
 
