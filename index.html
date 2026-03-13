@@ -17,12 +17,13 @@ margin:0;
 }
 
 header{
-background:#1f2937;
+background:linear-gradient(135deg,#1f2937,#111827);
 color:white;
-padding:20px;
+padding:22px;
 text-align:center;
-font-size:28px;
+font-size:30px;
 font-weight:bold;
+letter-spacing:1px;
 }
 
 /* CONTENEDOR */
@@ -204,6 +205,57 @@ text-decoration:none;
 box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
+/* CATEGORIAS */
+
+.categorias{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:25px;
+justify-content:center;
+}
+
+.categorias button{
+background:#e5e7eb;
+border:none;
+padding:8px 16px;
+border-radius:20px;
+cursor:pointer;
+font-size:14px;
+font-weight:600;
+transition:0.2s;
+}
+
+.categorias button:hover{
+background:#2563eb;
+color:white;
+}
+
+.categorias button.active{
+background:#22c55e;
+color:white;
+}  
+
+.btn-close{
+margin-top:10px;
+padding:12px;
+width:100%;
+border:none;
+background:#f3f4f6;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+transition:0.2s;
+}
+
+.btn-close:hover{
+background:#e5e7eb;
+}
+
+.btn-close:hover{
+background:#e5e7eb;
+}
+
 </style>
 
 </head>
@@ -232,6 +284,8 @@ Catálogo de Productos
 
 </div>
 
+<div id="categorias" class="categorias"></div>  
+
 <div id="productos" class="grid"></div>
 
 </div>
@@ -257,7 +311,7 @@ Enviar pedido por WhatsApp
 </button>
 
 <button class="btn-close" onclick="toggleCart()">
-Cerrar
+Cerrar carrito!
 </button>
 
 </div>
@@ -269,13 +323,29 @@ Cerrar
 <script>
 
 let productos=[]
+let categorias={}  
 let carrito=[]
 
 fetch("productos.json")
 .then(r=>r.json())
 .then(data=>{
+
 productos=data
+
+data.forEach(p=>{
+
+let cat=p.category || "Otros"
+
+if(!categorias[cat]) categorias[cat]=[]
+
+categorias[cat].push(p)
+
+})
+
+crearCategorias()
+
 mostrarProductos(productos)
+
 })
 
 function mostrarProductos(lista){
@@ -306,6 +376,34 @@ Agregar al carrito
 </div>
 
 `
+
+})
+
+}
+function crearCategorias(){
+
+let cont=document.getElementById("categorias")
+
+cont.innerHTML=""
+
+Object.keys(categorias).forEach(cat=>{
+
+let btn=document.createElement("button")
+
+btn.textContent=cat
+
+btn.onclick=()=>{
+
+document.querySelectorAll(".categorias button")
+.forEach(b=>b.classList.remove("active"))
+
+btn.classList.add("active")
+
+mostrarProductos(categorias[cat])
+
+}
+
+cont.appendChild(btn)
 
 })
 
