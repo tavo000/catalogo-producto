@@ -36,16 +36,21 @@ padding:20px;
 
 .search-container{
 display:flex;
-gap:10px;
-margin-bottom:20px;
+justify-content:center;
+align-items:center;
+gap:15px;
+margin-bottom:30px;
 }
 
 #search{
-flex:1;
-padding:12px;
-border-radius:8px;
+width:80%;
+max-width:900px;
+padding:14px 18px;
+border-radius:10px;
 border:1px solid #ddd;
-font-size:16px;
+font-size:18px;
+outline:none;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 
 #sort{
@@ -177,6 +182,46 @@ box-shadow:0 8px 20px rgba(0,0,0,0.25);
 background:#1ebe5d;
 }
 
+#carritoPanel{
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
+overflow:auto;
+z-index:999;
+}
+
+#carritoPanel.open{
+right:0;
+}
+
+.btn-whatsapp{
+margin-top:20px;
+padding:12px;
+background:#25D366;
+color:white;
+border:none;
+border-radius:6px;
+font-weight:bold;
+width:100%;
+cursor:pointer;
+}
+
+.btn-cerrar{
+margin-top:10px;
+padding:10px;
+width:100%;
+border:none;
+background:#ddd;
+border-radius:6px;
+cursor:pointer;
+}
+  
 </style>
   
 </head>
@@ -224,6 +269,7 @@ Catálogo de productos
 🛒 <span id="cartCount">0</span>
 
 </div>
+
 
 <script>
 
@@ -341,6 +387,184 @@ window.open(
 
 }
 
+</script>
+
+
+<div class="carrito-float" onclick="enviarWhatsApp()">
+🛒 <span id="contador">0</span>
+</div>
+
+</body>
+</html>
+
+let productos=[]
+let carrito=[]
+
+fetch("productos.json")
+.then(r=>r.json())
+.then(data=>{
+productos=data
+mostrarProductos(productos)
+})
+
+function mostrarProductos(lista){
+
+let cont=document.getElementById("productos")
+
+cont.innerHTML=""
+
+lista.forEach(p=>{
+
+cont.innerHTML+=`
+
+<div class="card">
+
+<img src="${p.image}">
+
+<h4>${p.name}</h4>
+
+<div class="price">${p.price}</div>
+
+<button class="buy-btn"
+onclick="agregarCarrito('${p.name}','${p.price}')">
+
+Agregar al carrito
+
+</button>
+
+</div>
+
+`
+
+})
+
+}
+
+function agregarCarrito(nombre,precio){
+
+let prod=carrito.find(p=>p.name===nombre)
+
+if(prod){
+
+prod.cantidad++
+
+}else{
+
+carrito.push({
+name:nombre,
+price:precio,
+cantidad:1
+})
+
+}
+
+actualizarCarrito()
+
+}
+
+function abrirCarrito(){
+
+document.getElementById("carritoPanel").classList.add("open")
+mostrarCarrito()
+
+}
+
+function cerrarCarrito(){
+
+document.getElementById("carritoPanel").classList.remove("open")
+
+}
+
+function mostrarCarrito(){
+
+let cont=document.getElementById("listaCarrito")
+
+cont.innerHTML=""
+
+let total=0
+
+carrito.forEach(p=>{
+
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+
+total+=subtotal
+
+cont.innerHTML+=`
+
+<div style="border-bottom:1px solid #eee;padding:10px 0">
+
+<b>${p.name}</b><br>
+
+Cantidad: ${p.cantidad}<br>
+
+Subtotal: $${subtotal.toLocaleString()}
+
+</div>
+
+`
+
+})
+
+document.getElementById("totalCarrito").innerHTML=
+
+`<h3>Total: $${total.toLocaleString()}</h3>`
+
+}
+  
+function actualizarCarrito(){
+
+let total=0
+let cantidad=0
+
+carrito.forEach(p=>{
+
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+total+=precio*p.cantidad
+cantidad+=p.cantidad
+
+})
+
+document.getElementById("contador").innerText=cantidad
+
+window.totalCompra=total
+
+}
+
+function enviarWhatsApp(){
+
+let mensaje="Hola, quiero comprar:%0A%0A"
+
+let total=0
+
+carrito.forEach(p=>{
+
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+
+total+=subtotal
+
+mensaje+=`${p.cantidad} x ${p.name} - $${subtotal.toLocaleString()}%0A`
+
+})
+
+mensaje+=`%0ATotal: $${total.toLocaleString()}`
+
+window.open(
+`https://wa.me/5493401415127?text=${mensaje}`
+)
+
+}
+
 </script>  
 
 <div class="cart-float" onclick="enviarWhatsApp()">
@@ -356,6 +580,28 @@ target="_blank">
 
 </a>
 
+<div id="carritoPanel">
+
+<h2>Tu carrito</h2>
+
+<div id="listaCarrito"></div>
+
+<div id="totalCarrito"></div>
+
+<button onclick="enviarWhatsApp()" class="btn-whatsapp">
+Enviar pedido por WhatsApp
+</button>
+
+<button onclick="cerrarCarrito()" class="btn-cerrar">
+Cerrar
+</button>
+
+</div>
+
+<div class="carrito-float" onclick="abrirCarrito()">
+🛒 <span id="contador">0</span>
+</div>
+  
 </body>
 
 </html>
