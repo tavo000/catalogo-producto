@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catálogo de productos</title>
+<title>Catálogo de Productos</title>
 
 <style>
 
@@ -14,14 +14,15 @@ body{
 font-family:Arial, Helvetica, sans-serif;
 background:#f4f6f9;
 margin:0;
-padding:0;
 }
 
-h1{
+header{
 background:#1f2937;
 color:white;
 padding:20px;
-margin:0;
+text-align:center;
+font-size:28px;
+font-weight:bold;
 }
 
 /* CONTENEDOR */
@@ -34,56 +35,28 @@ padding:20px;
 
 /* BUSCADOR */
 
-.search-container{
+.search-bar{
 display:flex;
+gap:10px;
 justify-content:center;
-align-items:center;
-gap:15px;
-margin-bottom:30px;
+margin-bottom:25px;
 }
 
 #search{
-width:80%;
-max-width:900px;
-padding:14px 18px;
-border-radius:10px;
+width:70%;
+padding:14px;
+border-radius:8px;
 border:1px solid #ddd;
-font-size:18px;
-outline:none;
-box-shadow:0 2px 6px rgba(0,0,0,0.08);
+font-size:16px;
 }
 
 #sort{
-padding:12px;
+padding:14px;
 border-radius:8px;
 border:1px solid #ddd;
 font-size:15px;
 background:white;
 cursor:pointer;
-}
-
-/* CATEGORIAS */
-
-.categorias{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin-bottom:25px;
-}
-
-.categorias button{
-background:#e5e7eb;
-border:none;
-padding:8px 14px;
-border-radius:20px;
-cursor:pointer;
-font-size:14px;
-transition:0.2s;
-}
-
-.categorias button:hover{
-background:#2563eb;
-color:white;
 }
 
 /* GRID PRODUCTOS */
@@ -94,15 +67,15 @@ grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
 gap:20px;
 }
 
-/* TARJETA PRODUCTO */
+/* TARJETA */
 
 .card{
 background:white;
 border-radius:12px;
 padding:15px;
 text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
-transition:0.25s;
+box-shadow:0 8px 18px rgba(0,0,0,0.08);
+transition:0.2s;
 }
 
 .card:hover{
@@ -124,8 +97,8 @@ margin:10px 0;
 
 .buy-btn{
 background:#22c55e;
-border:none;
 color:white;
+border:none;
 padding:10px 15px;
 border-radius:6px;
 cursor:pointer;
@@ -136,56 +109,35 @@ font-weight:bold;
 background:#16a34a;
 }
 
-/* CARRITO */
+/* BOTON CARRITO */
 
-.cart-float{
+.cart-button{
 position:fixed;
 right:20px;
 bottom:90px;
 background:#2563eb;
 color:white;
-padding:14px 18px;
+padding:15px 18px;
 border-radius:40px;
 font-weight:bold;
 cursor:pointer;
 box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
-.cart-float span{
+.cart-button span{
 background:white;
 color:black;
 padding:3px 8px;
 border-radius:10px;
-margin-left:5px;
+margin-left:6px;
 }
 
-/* WHATSAPP */
+/* PANEL CARRITO */
 
-.whatsapp{
+#cartPanel{
 position:fixed;
-right:20px;
-bottom:20px;
-background:#25D366;
-color:white;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-text-decoration:none;
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
-}
-
-.whatsapp:hover{
-background:#1ebe5d;
-}
-
-#carritoPanel{
-position:fixed;
-right:-400px;
 top:0;
+right:-400px;
 width:350px;
 height:100%;
 background:white;
@@ -196,49 +148,77 @@ overflow:auto;
 z-index:999;
 }
 
-#carritoPanel.open{
+#cartPanel.open{
 right:0;
 }
 
+.cart-item{
+border-bottom:1px solid #eee;
+padding:10px 0;
+}
+
+.cart-total{
+font-size:20px;
+font-weight:bold;
+margin-top:15px;
+}
+
 .btn-whatsapp{
-margin-top:20px;
-padding:12px;
 background:#25D366;
 color:white;
 border:none;
+padding:12px;
 border-radius:6px;
 font-weight:bold;
 width:100%;
+margin-top:15px;
 cursor:pointer;
 }
 
-.btn-cerrar{
-margin-top:10px;
-padding:10px;
-width:100%;
+.btn-close{
+background:#eee;
 border:none;
-background:#ddd;
+padding:10px;
 border-radius:6px;
+width:100%;
+margin-top:10px;
 cursor:pointer;
 }
-  
+
+/* WHATSAPP FLOTANTE */
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+color:white;
+text-decoration:none;
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+
 </style>
-  
+
 </head>
 
 <body>
 
 <header>
-
-Catálogo de productos
-
+Catálogo de Productos
 </header>
 
 <div class="container">
 
 <div class="search-bar">
 
-<input type="text" placeholder="🔎 Buscar productos..." id="search">
+<input id="search" placeholder="Buscar productos...">
 
 <select id="sort">
 
@@ -252,28 +232,41 @@ Catálogo de productos
 
 </div>
 
-<div class="categorias">
-
-<h3>Categorías</h3>
-
-<div class="categoria-lista" id="categoriaLista"></div>
+<div id="productos" class="grid"></div>
 
 </div>
 
-<div class="grid" id="productos"></div>
+<!-- BOTON CARRITO -->
+
+<div class="cart-button" onclick="toggleCart()">
+🛒 <span id="contador">0</span>
+</div>
+
+<!-- PANEL CARRITO -->
+
+<div id="cartPanel">
+
+<h2>Tu carrito</h2>
+
+<div id="cartItems"></div>
+
+<div id="cartTotal" class="cart-total"></div>
+
+<button class="btn-whatsapp" onclick="enviarWhatsApp()">
+Enviar pedido por WhatsApp
+</button>
+
+<button class="btn-close" onclick="toggleCart()">
+Cerrar
+</button>
 
 </div>
 
-<div class="cart">
+<!-- WHATSAPP -->
 
-🛒 <span id="cartCount">0</span>
-
-</div>
-
+<a href="https://wa.me/5493401415127" class="whatsapp">💬</a>
 
 <script>
-
-/* AQUI VA TODO TU CODIGO JAVASCRIPT */
 
 let productos=[]
 let carrito=[]
@@ -345,20 +338,49 @@ function actualizarCarrito(){
 let total=0
 let cantidad=0
 
+let cont=document.getElementById("cartItems")
+cont.innerHTML=""
+
 carrito.forEach(p=>{
 
 let precio=parseFloat(
 p.price.replace("$","").replace(/\./g,"").replace(",",".")
 )
 
-total+=precio*p.cantidad
+let subtotal=precio*p.cantidad
+
+total+=subtotal
 cantidad+=p.cantidad
+
+cont.innerHTML+=`
+
+<div class="cart-item">
+
+<b>${p.name}</b><br>
+
+Cantidad: ${p.cantidad}<br>
+
+Subtotal: $${subtotal.toLocaleString()}
+
+</div>
+
+`
 
 })
 
 document.getElementById("contador").innerText=cantidad
 
+document.getElementById("cartTotal").innerHTML=
+
+"Total: $" + total.toLocaleString()
+
 window.totalCompra=total
+
+}
+
+function toggleCart(){
+
+document.getElementById("cartPanel").classList.toggle("open")
 
 }
 
@@ -367,8 +389,8 @@ function enviarWhatsApp(){
 if(carrito.length===0){
 
 alert("El carrito está vacío")
-
 return
+
 }
 
 let mensaje="Hola, quiero comprar:%0A%0A"
@@ -389,221 +411,7 @@ window.open(
 
 </script>
 
-
-<div class="carrito-float" onclick="enviarWhatsApp()">
-🛒 <span id="contador">0</span>
-</div>
-
 </body>
-</html>
-
-let productos=[]
-let carrito=[]
-
-fetch("productos.json")
-.then(r=>r.json())
-.then(data=>{
-productos=data
-mostrarProductos(productos)
-})
-
-function mostrarProductos(lista){
-
-let cont=document.getElementById("productos")
-
-cont.innerHTML=""
-
-lista.forEach(p=>{
-
-cont.innerHTML+=`
-
-<div class="card">
-
-<img src="${p.image}">
-
-<h4>${p.name}</h4>
-
-<div class="price">${p.price}</div>
-
-<button class="buy-btn"
-onclick="agregarCarrito('${p.name}','${p.price}')">
-
-Agregar al carrito
-
-</button>
-
-</div>
-
-`
-
-})
-
-}
-
-function agregarCarrito(nombre,precio){
-
-let prod=carrito.find(p=>p.name===nombre)
-
-if(prod){
-
-prod.cantidad++
-
-}else{
-
-carrito.push({
-name:nombre,
-price:precio,
-cantidad:1
-})
-
-}
-
-actualizarCarrito()
-
-}
-
-function abrirCarrito(){
-
-document.getElementById("carritoPanel").classList.add("open")
-mostrarCarrito()
-
-}
-
-function cerrarCarrito(){
-
-document.getElementById("carritoPanel").classList.remove("open")
-
-}
-
-function mostrarCarrito(){
-
-let cont=document.getElementById("listaCarrito")
-
-cont.innerHTML=""
-
-let total=0
-
-carrito.forEach(p=>{
-
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
-let subtotal=precio*p.cantidad
-
-total+=subtotal
-
-cont.innerHTML+=`
-
-<div style="border-bottom:1px solid #eee;padding:10px 0">
-
-<b>${p.name}</b><br>
-
-Cantidad: ${p.cantidad}<br>
-
-Subtotal: $${subtotal.toLocaleString()}
-
-</div>
-
-`
-
-})
-
-document.getElementById("totalCarrito").innerHTML=
-
-`<h3>Total: $${total.toLocaleString()}</h3>`
-
-}
-  
-function actualizarCarrito(){
-
-let total=0
-let cantidad=0
-
-carrito.forEach(p=>{
-
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
-total+=precio*p.cantidad
-cantidad+=p.cantidad
-
-})
-
-document.getElementById("contador").innerText=cantidad
-
-window.totalCompra=total
-
-}
-
-function enviarWhatsApp(){
-
-let mensaje="Hola, quiero comprar:%0A%0A"
-
-let total=0
-
-carrito.forEach(p=>{
-
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
-let subtotal=precio*p.cantidad
-
-total+=subtotal
-
-mensaje+=`${p.cantidad} x ${p.name} - $${subtotal.toLocaleString()}%0A`
-
-})
-
-mensaje+=`%0ATotal: $${total.toLocaleString()}`
-
-window.open(
-`https://wa.me/5493401415127?text=${mensaje}`
-)
-
-}
-
-</script>  
-
-<div class="cart-float" onclick="enviarWhatsApp()">
-🛒 <span id="contador">0</span>
-</div>
-
-<a
-href="https://wa.me/5493401415127"
-class="whatsapp"
-target="_blank">
-
-💬
-
-</a>
-
-<div id="carritoPanel">
-
-<h2>Tu carrito</h2>
-
-<div id="listaCarrito"></div>
-
-<div id="totalCarrito"></div>
-
-<button onclick="enviarWhatsApp()" class="btn-whatsapp">
-Enviar pedido por WhatsApp
-</button>
-
-<button onclick="cerrarCarrito()" class="btn-cerrar">
-Cerrar
-</button>
-
-</div>
-
-<div class="carrito-float" onclick="abrirCarrito()">
-🛒 <span id="contador">0</span>
-</div>
-  
-</body>
-
 </html>
 
 
