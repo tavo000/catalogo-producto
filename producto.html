@@ -84,10 +84,11 @@ Comprar por WhatsApp
 
 <script>
 
-<button onclick="volverCatalogo()" class="btn-volver">
-← Volver al catálogo
-</button>
+const params = new URLSearchParams(window.location.search)
 
+const nombreProducto = params.get("nombre")
+const categoriaProducto = params.get("categoria")
+  
 fetch("productos.json")
 .then(r=>r.json())
 .then(data=>{
