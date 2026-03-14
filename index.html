@@ -543,7 +543,19 @@ categorias[cat].push(p)
 })
 
 crearCategorias()
+
+let categoriaGuardada = localStorage.getItem("categoriaActual")
+
+if(categoriaGuardada && categorias[categoriaGuardada]){
+
+mostrarProductos(categorias[categoriaGuardada])
+
+}else{
+
 aplicarFiltros()
+
+}
+
 actualizarCarrito()
 
 })
