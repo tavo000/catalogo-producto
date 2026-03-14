@@ -502,23 +502,7 @@ return
 
 }
 
-let mensaje="🛒 *Nuevo pedido desde el catálogo*%0A%0A"
 
-carrito.forEach(p=>{
-
-mensaje+=`• ${p.name}%0A`
-mensaje+=`Cantidad: ${p.cantidad}%0A`
-mensaje+=`Precio: ${p.price}%0A%0A`
-
-})
-
-mensaje+="📦 Pedido generado desde el catálogo online."
-
-window.open(
-`https://wa.me/5493401415127?text=${mensaje}`
-)
-
-}
 
 let mensaje="🛒 *Nuevo pedido desde el catálogo*%0A%0A"
 
