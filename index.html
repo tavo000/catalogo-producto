@@ -405,10 +405,22 @@ Catálogo de Productos
 <select id="sort">
 
 <option value="">Ordenar por</option>
-<option value="mayor">Precio más alto</option>
-<option value="menor">Precio más bajo</option>
-<option value="az">A-Z</option>
-<option value="za">Z-A</option>
+
+<option value="mayor">
+Precio más alto
+</option>
+
+<option value="menor">
+Precio más bajo
+</option>
+
+<option value="az">
+A-Z
+</option>
+
+<option value="za">
+Z-A
+</option>
 
 </select>
 
@@ -739,21 +751,47 @@ mostrarProductos(filtrados)
 /* ORDENAR */
 
 document.getElementById("sort")
-.addEventListener("change",function(){
+.addEventListener("change", function(){
 
 let valor=this.value
 
-let copia=[...productos]
+let lista=[...productos]
 
-if(valor==="az"){
-copia.sort((a,b)=>a.name.localeCompare(b.name))
+function precioNumero(p){
+
+return parseFloat(
+p.price
+.replace("$","")
+.replace(/\./g,"")
+.replace(",",".")
+)
+
 }
 
-if(valor==="za"){
-copia.sort((a,b)=>b.name.localeCompare(a.name))
+switch(valor){
+
+case "mayor":
+lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
+break
+
+case "menor":
+lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
+break
+
+case "az":
+lista.sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))
+break
+
+case "za":
+lista.sort((a,b)=>b.name.localeCompare(a.name,"es",{sensitivity:"base"}))
+break
+
+default:
+lista=[...productos]
+
 }
 
-mostrarProductos(copia)
+mostrarProductos(lista)
 
 })
 
