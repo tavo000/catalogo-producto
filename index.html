@@ -343,6 +343,8 @@ crearCategorias()
 mostrarProductos(productos)
 actualizarCarrito()
 
+setTimeout(restaurarScroll,100)
+
 })
 
 function crearCategorias(){
@@ -384,7 +386,8 @@ html+=`
 
 <div class="card">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}">
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}"
+onclick="guardarScroll()">
 
 <img src="${p.image}" loading="lazy">
 
@@ -612,6 +615,26 @@ aviso.remove()
 },2000)
 
 }
+
+function guardarScroll(){
+
+localStorage.setItem("catalogo_scroll", window.scrollY)
+
+}
+
+function restaurarScroll(){
+
+let pos = localStorage.getItem("catalogo_scroll")
+
+if(pos){
+
+window.scrollTo(0, pos)
+
+localStorage.removeItem("catalogo_scroll")
+
+}
+
+}  
   
 </script>
 
