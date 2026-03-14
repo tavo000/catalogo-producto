@@ -534,7 +534,6 @@ productos = data
 data.forEach(p => {
 
 let raw = p.category || "Otros"
-
 let cat = raw.split(">")[0].trim()
 
 if(!categorias[cat]) categorias[cat] = []
@@ -544,14 +543,12 @@ categorias[cat].push(p)
 })
 
 crearCategorias()
-
 aplicarFiltros()
+actualizarCarrito()
 
 })
 .catch(error => {
-
 console.error("Error cargando productos:", error)
-
 })
 
 function mostrarProductos(lista){
@@ -591,13 +588,10 @@ cont.innerHTML = html
 
 }
 
-cont.innerHTML=html
-
-}
-
 function crearCategorias(){
 
 let cont=document.getElementById("categorias")
+cont.innerHTML=""
 
 Object.keys(categorias).forEach(cat=>{
 
@@ -622,218 +616,9 @@ cont.appendChild(btn)
 
 }
 
-function agregarCarrito(nombre,precio){
-
-let prod=carrito.find(p=>p.name===nombre)
-
-if(prod){
-
-prod.cantidad++
-
-}else{
-
-carrito.push({
-name:nombre,
-price:precio,
-cantidad:1
-})
-
-}
-
-actualizarCarrito()
-
-/* animacion visual */
-
-let cards=document.querySelectorAll(".card")
-
-cards.forEach(c=>{
-
-if(c.innerText.includes(nombre)){
-
-c.classList.add("card-added")
-
-setTimeout(()=>{
-
-c.classList.remove("card-added")
-
-},400)
-
-}
-
-})
-
-}
-
-function sumarCantidad(index){
-
-carrito[index].cantidad++
-
-actualizarCarrito()
-
-}
-
-function restarCantidad(index){
-
-carrito[index].cantidad--
-
-if(carrito[index].cantidad<=0){
-
-carrito.splice(index,1)
-
-}
-
-actualizarCarrito()
-
-}
-
-function eliminarProducto(index){
-
-carrito.splice(index,1)
-
-actualizarCarrito()
-
-}
-
-function limpiarCarrito(){
-
-carrito=[]
-
-actualizarCarrito()
-
-}
-  
-
-function actualizarCarrito(){
-
-let total=0
-let cantidad=0
-
-let cont=document.getElementById("cartItems")
-cont.innerHTML=""
-
-carrito.forEach((p,index)=>{
-
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
-let subtotal=precio*p.cantidad
-
-total+=subtotal
-cantidad+=p.cantidad
-
-cont.innerHTML+=`
-
-<div class="cart-item">
-
-<b>${p.name}</b><br>
-
-<div style="margin:6px 0; display:flex; gap:8px; align-items:center;">
-
-<button onclick="restarCantidad(${index})">➖</button>
-
-<span>${p.cantidad}</span>
-
-<button onclick="sumarCantidad(${index})">➕</button>
-
-<button onclick="eliminarProducto(${index})" style="margin-left:auto;">
-🗑
-</button>
-
-</div>
-
-Subtotal: $${subtotal.toLocaleString()}
-
-</div>
-
-`
-
-})
-
-document.getElementById("contador").innerText=cantidad
-
-document.getElementById("cartTotal").innerHTML=
-"Total: $" + total.toLocaleString()
-
-window.totalCompra=total
-
-localStorage.setItem("carrito", JSON.stringify(carrito))  
-
-}
-
-function toggleCart(){
-
-document.getElementById("cartPanel")
-.classList.toggle("open")
-
-}
-
-function enviarWhatsApp(){
-
-if(carrito.length===0){
-
-alert("El carrito está vacío")
-return
-
-}
-
-let mensaje="Hola, quiero comprar:%0A%0A"
-
-carrito.forEach(p=>{
-
-mensaje+=`${p.cantidad} x ${p.name} - ${p.price}%0A`
-
-})
-
-mensaje+=`%0ATotal: $${window.totalCompra.toLocaleString()}`
-
-window.open(
-`https://wa.me/5493401415127?text=${mensaje}`
-)
-
-}
-
-/* BUSCADOR */
-
-document.getElementById("search")
-.addEventListener("input", aplicarFiltros)
-
-/* ORDENAR */
-
-document.getElementById("sort")
-.addEventListener("change", aplicarFiltros)
-
-switch(valor){
-
-case "mayor":
-lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
-break
-
-case "menor":
-lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
-break
-
-case "az":
-lista.sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))
-break
-
-case "za":
-lista.sort((a,b)=>b.name.localeCompare(a.name,"es",{sensitivity:"base"}))
-break
-
-default:
-lista=[...productos]
-
-}
-
-mostrarProductos(lista)
-
-})
-
 function aplicarFiltros(){
 
 let texto = document.getElementById("search").value.toLowerCase()
-
 let orden = document.getElementById("sort").value
 
 let lista = productos.filter(p =>
@@ -875,40 +660,141 @@ mostrarProductos(lista)
 
 }
 
-function precioNumero(p){
+function agregarCarrito(nombre,precio){
 
-return parseFloat(
-p.price
-.replace("$","")
-.replace(/\./g,"")
-.replace(",",".")
+let prod=carrito.find(p=>p.name===nombre)
+
+if(prod){
+prod.cantidad++
+}else{
+carrito.push({
+name:nombre,
+price:precio,
+cantidad:1
+})
+}
+
+actualizarCarrito()
+
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(c=>{
+if(c.innerText.includes(nombre)){
+c.classList.add("card-added")
+setTimeout(()=>{c.classList.remove("card-added")},400)
+}
+})
+
+}
+
+function sumarCantidad(index){
+carrito[index].cantidad++
+actualizarCarrito()
+}
+
+function restarCantidad(index){
+
+carrito[index].cantidad--
+
+if(carrito[index].cantidad<=0){
+carrito.splice(index,1)
+}
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(index){
+carrito.splice(index,1)
+actualizarCarrito()
+}
+
+function limpiarCarrito(){
+carrito=[]
+actualizarCarrito()
+}
+
+function actualizarCarrito(){
+
+let total=0
+let cantidad=0
+
+let cont=document.getElementById("cartItems")
+cont.innerHTML=""
+
+carrito.forEach((p,index)=>{
+
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+
+total+=subtotal
+cantidad+=p.cantidad
+
+cont.innerHTML+=`
+
+<div class="cart-item">
+
+<b>${p.name}</b><br>
+
+<div style="margin:6px 0; display:flex; gap:8px; align-items:center;">
+
+<button onclick="restarCantidad(${index})">➖</button>
+
+<span>${p.cantidad}</span>
+
+<button onclick="sumarCantidad(${index})">➕</button>
+
+<button onclick="eliminarProducto(${index})" style="margin-left:auto;">🗑</button>
+
+</div>
+
+Subtotal: $${subtotal.toLocaleString()}
+
+</div>
+
+`
+
+})
+
+document.getElementById("contador").innerText=cantidad
+document.getElementById("cartTotal").innerHTML="Total: $" + total.toLocaleString()
+
+window.totalCompra=total
+
+localStorage.setItem("carrito", JSON.stringify(carrito))
+
+}
+
+function toggleCart(){
+document.getElementById("cartPanel").classList.toggle("open")
+}
+
+function enviarWhatsApp(){
+
+if(carrito.length===0){
+alert("El carrito está vacío")
+return
+}
+
+let mensaje="Hola, quiero comprar:%0A%0A"
+
+carrito.forEach(p=>{
+mensaje+=`${p.cantidad} x ${p.name} - ${p.price}%0A`
+})
+
+mensaje+=`%0ATotal: $${window.totalCompra.toLocaleString()}`
+
+window.open(
+`https://wa.me/5493401415127?text=${mensaje}`
 )
 
 }
 
-switch(orden){
-
-case "mayor":
-lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
-break
-
-case "menor":
-lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
-break
-
-case "az":
-lista.sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))
-break
-
-case "za":
-lista.sort((a,b)=>b.name.localeCompare(a.name,"es",{sensitivity:"base"}))
-break
-
-}
-
-mostrarProductos(lista)
-
-}  
+document.getElementById("search").addEventListener("input", aplicarFiltros)
+document.getElementById("sort").addEventListener("change", aplicarFiltros)
 
 </script>
 
