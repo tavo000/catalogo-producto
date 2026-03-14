@@ -367,6 +367,10 @@ target="_blank">
 
 <script>
 
+const params = new URLSearchParams(window.location.search)
+
+const categoriaURL = params.get("categoria")  
+
 let productos=[]
 let categorias={}  
 let carrito=[]
@@ -384,18 +388,15 @@ let raw = p.category || "Otros"
 /* tomar solo la categoría principal */
 let cat = raw.split(">")[0].trim()
 
-if(!categorias[cat]) categorias[cat]=[]
+if(categoriaURL && categorias[categoriaURL]){
 
-categorias[cat].push(p)
+mostrarProductos(categorias[categoriaURL])
 
-})
-
-crearCategorias()
+}else{
 
 mostrarProductos(productos)
 
-})
-
+}
 function mostrarProductos(lista){
 
 let cont=document.getElementById("productos")
