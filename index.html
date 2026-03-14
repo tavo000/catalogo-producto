@@ -70,10 +70,11 @@ font-weight:bold;
 }
 
 .categorias button.active{
-background:#22c55e;
+background:#2563eb;
 color:white;
+box-shadow:0 4px 10px rgba(37,99,235,0.4);
 }
-
+  
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
@@ -360,20 +361,52 @@ let cantidad=0
 let cont=document.getElementById("cartItems")
 cont.innerHTML=""
 
-carrito.forEach(p=>{
+carrito.forEach((p,index)=>{
 
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+
+total+=subtotal
 cantidad+=p.cantidad
 
-cont.innerHTML+=`<div class="cart-item">${p.name} x ${p.cantidad}</div>`
+cont.innerHTML+=`
+
+<div class="cart-item">
+
+<b>${p.name}</b><br>
+
+<div style="display:flex;gap:8px;margin-top:6px;align-items:center">
+
+<button onclick="restarCantidad(${index})">➖</button>
+
+<span>${p.cantidad}</span>
+
+<button onclick="sumarCantidad(${index})">➕</button>
+
+<button onclick="eliminarProducto(${index})" style="margin-left:auto">
+🗑
+</button>
+
+</div>
+
+Subtotal: $${subtotal.toLocaleString()}
+
+</div>
+
+`
 
 })
 
 document.getElementById("contador").innerText=cantidad
 
+document.getElementById("cartTotal").innerHTML="Total: $" + total.toLocaleString()
+
 localStorage.setItem("carrito",JSON.stringify(carrito))
 
 }
-
 function toggleCart(){
 
 document.getElementById("cartPanel").classList.toggle("open")
@@ -403,6 +436,35 @@ mostrarProductos(lista)
 
 })
 
+function sumarCantidad(index){
+
+carrito[index].cantidad++
+
+actualizarCarrito()
+
+}
+
+function restarCantidad(index){
+
+carrito[index].cantidad--
+
+if(carrito[index].cantidad<=0){
+
+carrito.splice(index,1)
+
+}
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(index){
+
+carrito.splice(index,1)
+
+actualizarCarrito()
+
+}
 </script>
 
 </body>
