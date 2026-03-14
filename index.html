@@ -367,10 +367,6 @@ target="_blank">
 
 <script>
 
-const params = new URLSearchParams(window.location.search)
-
-const categoriaURL = params.get("categoria")  
-
 let productos=[]
 let categorias={}  
 let carrito=[]
@@ -388,15 +384,18 @@ let raw = p.category || "Otros"
 /* tomar solo la categoría principal */
 let cat = raw.split(">")[0].trim()
 
-if(categoriaURL && categorias[categoriaURL]){
+if(!categorias[cat]) categorias[cat]=[]
 
-mostrarProductos(categorias[categoriaURL])
+categorias[cat].push(p)
 
-}else{
+})
+
+crearCategorias()
 
 mostrarProductos(productos)
 
-}
+})
+
 function mostrarProductos(lista){
 
 let cont=document.getElementById("productos")
@@ -409,11 +408,7 @@ cont.innerHTML+=`
 
 <div class="card">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}&cat=${encodeURIComponent(p.category)}">
-
 <img src="${p.image}">
-
-</a>
 
 <h4>${p.name}</h4>
 
@@ -427,7 +422,6 @@ Agregar al carrito
 </button>
 
 </div>
-
 
 `
 
