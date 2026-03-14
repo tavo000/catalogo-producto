@@ -340,7 +340,27 @@ categorias[cat].push(p)
 })
 
 crearCategorias()
+
+let categoriaGuardada = localStorage.getItem("categoriaActiva")
+
+if(categoriaGuardada && categorias[categoriaGuardada]){
+
+mostrarProductos(categorias[categoriaGuardada])
+
+setTimeout(()=>{
+document.querySelectorAll(".categorias button").forEach(btn=>{
+if(btn.innerText===categoriaGuardada){
+btn.classList.add("active")
+}
+})
+},50)
+
+}else{
+
 mostrarProductos(productos)
+
+}
+
 actualizarCarrito()
 
 setTimeout(restaurarScroll,100)
@@ -364,6 +384,8 @@ document.querySelectorAll(".categorias button")
 
 btn.classList.add("active")
 
+localStorage.setItem("categoriaActiva",cat)
+
 mostrarProductos(categorias[cat])
 
 }
@@ -386,9 +408,8 @@ html+=`
 
 <div class="card">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}"
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}&categoria=${encodeURIComponent(p.category)}"
 onclick="guardarScroll()">
-
 <img src="${p.image}" loading="lazy">
 
 </a>
