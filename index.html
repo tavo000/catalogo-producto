@@ -736,37 +736,12 @@ window.open(
 /* BUSCADOR */
 
 document.getElementById("search")
-.addEventListener("input",function(){
-
-let texto=this.value.toLowerCase()
-
-let filtrados=productos.filter(p=>
-p.name.toLowerCase().includes(texto)
-)
-
-mostrarProductos(filtrados)
-
-})
+.addEventListener("input", aplicarFiltros)
 
 /* ORDENAR */
 
 document.getElementById("sort")
-.addEventListener("change", function(){
-
-let valor=this.value
-
-let lista=[...productos]
-
-function precioNumero(p){
-
-return parseFloat(
-p.price
-.replace("$","")
-.replace(/\./g,"")
-.replace(",",".")
-)
-
-}
+.addEventListener("change", aplicarFiltros)
 
 switch(valor){
 
@@ -794,6 +769,50 @@ lista=[...productos]
 mostrarProductos(lista)
 
 })
+
+function aplicarFiltros(){
+
+let texto = document.getElementById("search").value.toLowerCase()
+let orden = document.getElementById("sort").value
+
+let lista = productos.filter(p =>
+p.name.toLowerCase().includes(texto)
+)
+
+function precioNumero(p){
+
+return parseFloat(
+p.price
+.replace("$","")
+.replace(/\./g,"")
+.replace(",",".")
+)
+
+}
+
+switch(orden){
+
+case "mayor":
+lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
+break
+
+case "menor":
+lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
+break
+
+case "az":
+lista.sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))
+break
+
+case "za":
+lista.sort((a,b)=>b.name.localeCompare(a.name,"es",{sensitivity:"base"}))
+break
+
+}
+
+mostrarProductos(lista)
+
+}  
 
 </script>
 
