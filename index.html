@@ -408,7 +408,11 @@ cont.innerHTML+=`
 
 <div class="card">
 
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}&cat=${encodeURIComponent(p.category)}">
+
 <img src="${p.image}">
+
+</a>
 
 <h4>${p.name}</h4>
 
@@ -422,6 +426,7 @@ Agregar al carrito
 </button>
 
 </div>
+
 
 `
 
@@ -559,6 +564,7 @@ window.open(
 
 </body>
 </html>
+
 
 
 
