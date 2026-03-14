@@ -542,27 +542,35 @@ categorias[cat].push(p)
 
 })
 
-crearCategorias()
+function crearCategorias(){
 
-let categoriaGuardada = localStorage.getItem("categoriaActual")
+let cont=document.getElementById("categorias")
+cont.innerHTML=""
 
-if(categoriaGuardada && categorias[categoriaGuardada]){
+Object.keys(categorias).forEach(cat=>{
 
-mostrarProductos(categorias[categoriaGuardada])
+let btn=document.createElement("button")
 
-}else{
+btn.textContent=cat
 
-aplicarFiltros()
+btn.onclick=()=>{
+
+document.querySelectorAll(".categorias button")
+.forEach(b=>b.classList.remove("active"))
+
+btn.classList.add("active")
+
+localStorage.setItem("categoriaActual", cat)
+
+mostrarProductos(categorias[cat])
 
 }
 
-actualizarCarrito()
+cont.appendChild(btn)
 
 })
-.catch(error => {
-console.error("Error cargando productos:", error)
-})
 
+}
 function mostrarProductos(lista){
 
 let cont = document.getElementById("productos")
