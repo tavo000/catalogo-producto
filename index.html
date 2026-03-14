@@ -258,6 +258,10 @@ Catálogo de Productos
 Enviar pedido por WhatsApp
 </button>
 
+<button onclick="limpiarCarrito()" class="btn-close">
+Limpiar carrito
+</button>  
+
 <button class="btn-close" onclick="toggleCart()">
 Cerrar carrito
 </button>
@@ -389,6 +393,45 @@ actualizarCarrito()
 
 }
 
+function sumarCantidad(index){
+
+carrito[index].cantidad++
+
+actualizarCarrito()
+
+}
+
+function restarCantidad(index){
+
+carrito[index].cantidad--
+
+if(carrito[index].cantidad<=0){
+
+carrito.splice(index,1)
+
+}
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(index){
+
+carrito.splice(index,1)
+
+actualizarCarrito()
+
+}
+
+function limpiarCarrito(){
+
+carrito=[]
+
+actualizarCarrito()
+
+}
+  
+
 function actualizarCarrito(){
 
 let total=0
@@ -397,7 +440,7 @@ let cantidad=0
 let cont=document.getElementById("cartItems")
 cont.innerHTML=""
 
-carrito.forEach(p=>{
+carrito.forEach((p,index)=>{
 
 let precio=parseFloat(
 p.price.replace("$","").replace(/\./g,"").replace(",",".")
@@ -414,7 +457,19 @@ cont.innerHTML+=`
 
 <b>${p.name}</b><br>
 
-Cantidad: ${p.cantidad}<br>
+<div style="margin:6px 0; display:flex; gap:8px; align-items:center;">
+
+<button onclick="restarCantidad(${index})">➖</button>
+
+<span>${p.cantidad}</span>
+
+<button onclick="sumarCantidad(${index})">➕</button>
+
+<button onclick="eliminarProducto(${index})" style="margin-left:auto;">
+🗑
+</button>
+
+</div>
 
 Subtotal: $${subtotal.toLocaleString()}
 
