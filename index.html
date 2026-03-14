@@ -236,6 +236,26 @@ width:100%;
 background:#1d4ed8;
 }  
 
+.aviso{
+position:fixed;
+bottom:100px;
+right:20px;
+background:#111827;
+color:white;
+padding:12px 18px;
+border-radius:8px;
+font-size:14px;
+opacity:0;
+transform:translateY(20px);
+transition:0.3s;
+z-index:9999;
+}
+
+.aviso.show{
+opacity:1;
+transform:translateY(0);
+}  
+
 </style>
 
 </head>
@@ -256,6 +276,8 @@ Catálogo de Productos
 <option value="">Ordenar por</option>
 <option value="az">A-Z</option>
 <option value="za">Z-A</option>
+<option value="menor">Precio menor</option>
+<option value="mayor">Precio mayor</option>
 </select>
 
 </div>
@@ -427,13 +449,11 @@ actualizarCarrito()
 
 function limpiarCarrito(){
 
-if(confirm("¿Desea vaciar el carrito?")){
-
 carrito=[]
 
 actualizarCarrito()
 
-}
+mostrarAviso("Carrito vaciado")
 
 }
 
@@ -535,8 +555,19 @@ document.getElementById("sort").addEventListener("change",function(){
 let v=this.value
 let lista=[...productos]
 
+function precioNumero(p){
+return parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+}
+
 if(v==="az") lista.sort((a,b)=>a.name.localeCompare(b.name))
+
 if(v==="za") lista.sort((a,b)=>b.name.localeCompare(a.name))
+
+if(v==="menor") lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
+
+if(v==="mayor") lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
 
 mostrarProductos(lista)
 
@@ -544,7 +575,7 @@ mostrarProductos(lista)
 
 function comprarAhora(nombre,precio){
 
-let mensaje="🛒 *Consulta de producto*%0A%0A"
+let mensaje="🛒 *Quiero comprar éste producto*%0A%0A"
 
 mensaje+=`Producto: ${nombre}%0A`
 mensaje+=`Precio: ${precio}%0A%0A`
@@ -557,6 +588,31 @@ window.open(
 
 }  
 
+function mostrarAviso(texto){
+
+let aviso=document.createElement("div")
+
+aviso.className="aviso"
+
+aviso.innerText=texto
+
+document.body.appendChild(aviso)
+
+setTimeout(()=>{
+aviso.classList.add("show")
+},10)
+
+setTimeout(()=>{
+aviso.classList.remove("show")
+
+setTimeout(()=>{
+aviso.remove()
+},300)
+
+},2000)
+
+}
+  
 </script>
 
 </body>
