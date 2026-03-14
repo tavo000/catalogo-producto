@@ -74,7 +74,7 @@ background:#2563eb;
 color:white;
 box-shadow:0 4px 10px rgba(37,99,235,0.4);
 }
-  
+
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
@@ -190,13 +190,9 @@ Catálogo de Productos
 <input id="search" placeholder="Buscar productos...">
 
 <select id="sort">
-
 <option value="">Ordenar por</option>
-<option value="mayor">Precio más alto</option>
-<option value="menor">Precio más bajo</option>
 <option value="az">A-Z</option>
 <option value="za">Z-A</option>
-
 </select>
 
 </div>
@@ -218,6 +214,8 @@ Catálogo de Productos
 <div id="cartItems"></div>
 
 <div id="cartTotal" class="cart-total"></div>
+
+<button onclick="enviarWhatsApp()">Enviar pedido por WhatsApp</button>
 
 <button onclick="limpiarCarrito()">Limpiar carrito</button>
 
@@ -252,19 +250,7 @@ categorias[cat].push(p)
 })
 
 crearCategorias()
-
-let categoriaGuardada=localStorage.getItem("categoriaActual")
-
-if(categoriaGuardada && categorias[categoriaGuardada]){
-
-mostrarProductos(categorias[categoriaGuardada])
-
-}else{
-
 mostrarProductos(productos)
-
-}
-
 actualizarCarrito()
 
 })
@@ -272,8 +258,6 @@ actualizarCarrito()
 function crearCategorias(){
 
 let cont=document.getElementById("categorias")
-
-cont.innerHTML=""
 
 Object.keys(categorias).forEach(cat=>{
 
@@ -287,8 +271,6 @@ document.querySelectorAll(".categorias button")
 .forEach(b=>b.classList.remove("active"))
 
 btn.classList.add("active")
-
-localStorage.setItem("categoriaActual",cat)
 
 mostrarProductos(categorias[cat])
 
@@ -309,6 +291,7 @@ let html=""
 lista.forEach(p=>{
 
 html+=`
+
 <div class="card">
 
 <a href="producto.html?nombre=${encodeURIComponent(p.name)}">
@@ -321,12 +304,12 @@ html+=`
 
 <div class="price">${p.price}</div>
 
-<button class="buy-btn"
-onclick="agregarCarrito('${p.name}','${p.price}')">
+<button onclick="agregarCarrito('${p.name}','${p.price}')">
 Agregar al carrito
 </button>
 
 </div>
+
 `
 
 })
@@ -346,10 +329,38 @@ actualizarCarrito()
 
 }
 
+function sumarCantidad(i){
+carrito[i].cantidad++
+actualizarCarrito()
+}
+
+function restarCantidad(i){
+
+carrito[i].cantidad--
+
+if(carrito[i].cantidad<=0) carrito.splice(i,1)
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(i){
+
+carrito.splice(i,1)
+
+actualizarCarrito()
+
+}
+
 function limpiarCarrito(){
 
+if(confirm("¿Desea vaciar el carrito?")){
+
 carrito=[]
+
 actualizarCarrito()
+
+}
 
 }
 
@@ -361,12 +372,9 @@ let cantidad=0
 let cont=document.getElementById("cartItems")
 cont.innerHTML=""
 
-carrito.forEach((p,index)=>{
+carrito.forEach((p,i)=>{
 
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
+let precio=parseFloat(p.price.replace("$","").replace(/\./g,"").replace(",","."))
 let subtotal=precio*p.cantidad
 
 total+=subtotal
@@ -376,19 +384,17 @@ cont.innerHTML+=`
 
 <div class="cart-item">
 
-<b>${p.name}</b><br>
+<b>${p.name}</b>
 
-<div style="display:flex;gap:8px;margin-top:6px;align-items:center">
+<div>
 
-<button onclick="restarCantidad(${index})">➖</button>
+<button onclick="restarCantidad(${i})">➖</button>
 
-<span>${p.cantidad}</span>
+${p.cantidad}
 
-<button onclick="sumarCantidad(${index})">➕</button>
+<button onclick="sumarCantidad(${i})">➕</button>
 
-<button onclick="eliminarProducto(${index})" style="margin-left:auto">
-🗑
-</button>
+<button onclick="eliminarProducto(${i})">🗑</button>
 
 </div>
 
@@ -401,32 +407,50 @@ Subtotal: $${subtotal.toLocaleString()}
 })
 
 document.getElementById("contador").innerText=cantidad
-
-document.getElementById("cartTotal").innerHTML="Total: $" + total.toLocaleString()
+document.getElementById("cartTotal").innerHTML="Total: $"+total.toLocaleString()
 
 localStorage.setItem("carrito",JSON.stringify(carrito))
 
 }
+
 function toggleCart(){
 
 document.getElementById("cartPanel").classList.toggle("open")
 
 }
 
+function enviarWhatsApp(){
+
+if(carrito.length===0){
+alert("El carrito está vacío")
+return
+}
+
+let mensaje="🛒 *Nuevo pedido*%0A%0A"
+
+carrito.forEach(p=>{
+mensaje+=`• ${p.name}%0A`
+mensaje+=`Cantidad: ${p.cantidad}%0A`
+mensaje+=`Precio: ${p.price}%0A%0A`
+})
+
+mensaje+="Pedido enviado desde el catálogo online."
+
+window.open(`https://wa.me/5493401415127?text=${mensaje}`)
+
+}
+
 document.getElementById("search").addEventListener("input",function(){
 
-let texto=this.value.toLowerCase()
+let t=this.value.toLowerCase()
 
-let lista=productos.filter(p=>p.name.toLowerCase().includes(texto))
-
-mostrarProductos(lista)
+mostrarProductos(productos.filter(p=>p.name.toLowerCase().includes(t)))
 
 })
 
 document.getElementById("sort").addEventListener("change",function(){
 
 let v=this.value
-
 let lista=[...productos]
 
 if(v==="az") lista.sort((a,b)=>a.name.localeCompare(b.name))
@@ -436,35 +460,6 @@ mostrarProductos(lista)
 
 })
 
-function sumarCantidad(index){
-
-carrito[index].cantidad++
-
-actualizarCarrito()
-
-}
-
-function restarCantidad(index){
-
-carrito[index].cantidad--
-
-if(carrito[index].cantidad<=0){
-
-carrito.splice(index,1)
-
-}
-
-actualizarCarrito()
-
-}
-
-function eliminarProducto(index){
-
-carrito.splice(index,1)
-
-actualizarCarrito()
-
-}
 </script>
 
 </body>
