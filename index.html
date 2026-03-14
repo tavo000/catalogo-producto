@@ -525,19 +525,19 @@ let productos=[]
 let categorias={}
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
-fetch("productos.json",{cache:"force-cache"})
-.then(r=>r.json())
-.then(data=>{
+fetch("productos.json")
+.then(response => response.json())
+.then(data => {
 
-productos=data
+productos = data
 
-data.forEach(p=>{
+data.forEach(p => {
 
-let raw=p.category || "Otros"
+let raw = p.category || "Otros"
 
-let cat=raw.split(">")[0].trim()
+let cat = raw.split(">")[0].trim()
 
-if(!categorias[cat]) categorias[cat]=[]
+if(!categorias[cat]) categorias[cat] = []
 
 categorias[cat].push(p)
 
@@ -545,26 +545,29 @@ categorias[cat].push(p)
 
 crearCategorias()
 
-mostrarProductos(productos)
-actualizarCarrito()  
+aplicarFiltros()
+
+})
+.catch(error => {
+
+console.error("Error cargando productos:", error)
 
 })
 
 function mostrarProductos(lista){
 
-let cont=document.getElementById("productos")
+let cont = document.getElementById("productos")
 
-let html=""
+let html = ""
 
-lista.forEach(p=>{
+lista.forEach(p => {
 
-html+=`
-
+html += `
 <div class="card">
 
 <a href="producto.html?nombre=${encodeURIComponent(p.name)}">
 
-<img loading="lazy" decoding="async" src="${p.image}">
+<img loading="lazy" src="${p.image}">
 
 </a>
 
@@ -580,10 +583,13 @@ Agregar al carrito
 </button>
 
 </div>
-
 `
 
 })
+
+cont.innerHTML = html
+
+}
 
 cont.innerHTML=html
 
@@ -827,11 +833,47 @@ mostrarProductos(lista)
 function aplicarFiltros(){
 
 let texto = document.getElementById("search").value.toLowerCase()
+
 let orden = document.getElementById("sort").value
 
 let lista = productos.filter(p =>
 p.name.toLowerCase().includes(texto)
 )
+
+function precioNumero(p){
+
+return parseFloat(
+p.price
+.replace("$","")
+.replace(/\./g,"")
+.replace(",",".")
+)
+
+}
+
+switch(orden){
+
+case "mayor":
+lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
+break
+
+case "menor":
+lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
+break
+
+case "az":
+lista.sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))
+break
+
+case "za":
+lista.sort((a,b)=>b.name.localeCompare(a.name,"es",{sensitivity:"base"}))
+break
+
+}
+
+mostrarProductos(lista)
+
+}
 
 function precioNumero(p){
 
