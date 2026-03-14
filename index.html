@@ -31,8 +31,6 @@ margin:auto;
 padding:20px;
 }
 
-/* BUSCADOR */
-
 .search-bar{
 display:flex;
 gap:12px;
@@ -41,64 +39,18 @@ margin-bottom:25px;
 flex-wrap:wrap;
 }
 
-/* ============================= */
-/* BUSCADOR Y FILTROS PROFESIONAL */
-/* ============================= */
-
-.search-bar{
-display:flex;
-gap:12px;
-justify-content:center;
-align-items:center;
-margin-bottom:30px;
-flex-wrap:wrap;
-}
-
 #search{
 width:60%;
-padding:14px 18px;
+padding:14px;
 border-radius:10px;
-border:1px solid #d1d5db;
-font-size:15px;
-font-weight:500;
-color:#111827;
-background:#ffffff;
-box-shadow:0 2px 6px rgba(0,0,0,0.08);
-transition:all 0.25s ease;
-}
-
-#search::placeholder{
-color:#9ca3af;
-}
-
-#search:focus{
-border:1px solid #2563eb;
-box-shadow:0 4px 12px rgba(37,99,235,0.25);
-outline:none;
+border:1px solid #ccc;
 }
 
 #sort{
-padding:14px 18px;
+padding:14px;
 border-radius:10px;
-border:1px solid #d1d5db;
-font-size:14px;
-font-weight:600;
-background:#ffffff;
-color:#111827;
-cursor:pointer;
-box-shadow:0 2px 6px rgba(0,0,0,0.08);
-transition:0.25s;
+border:1px solid #ccc;
 }
-
-#sort:hover{
-border-color:#2563eb;
-}
-
-#sort:focus{
-outline:none;
-border-color:#2563eb;
-}
-/* CATEGORIAS */
 
 .categorias{
 display:flex;
@@ -122,15 +74,11 @@ background:#22c55e;
 color:white;
 }
 
-/* GRID */
-
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
 gap:20px;
 }
-
-/* CARD */
 
 .card{
 background:white;
@@ -163,8 +111,6 @@ cursor:pointer;
 font-weight:bold;
 }
 
-/* CARRITO */
-
 .cart-button{
 position:fixed;
 right:20px;
@@ -196,7 +142,6 @@ box-shadow:-5px 0 20px rgba(0,0,0,0.2);
 padding:20px;
 transition:0.3s;
 overflow:auto;
-z-index:900;  
 }
 
 #cartPanel.open{
@@ -214,17 +159,6 @@ font-weight:bold;
 margin-top:15px;
 }
 
-.card h4{
-font-size:15px;
-font-weight:600;
-color:#111827;
-line-height:1.3;
-min-height:42px;
-margin:10px 0;
-}  
-
-/* BOTONES CARRITO */
-
 .whatsapp{
 position:fixed;
 right:20px;
@@ -236,207 +170,7 @@ border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.25);
-z-index:2000;
-}  
-
-.btn-whatsapp{
-background:#25D366;
-color:white;
-border:none;
-padding:12px;
-border-radius:8px;
-font-weight:bold;
-width:100%;
-margin-top:15px;
-cursor:pointer;
-font-size:15px;
-transition:0.2s;
 }
-
-.btn-whatsapp:hover{
-background:#1ebe5d;
-transform:scale(1.02);
-}
-
-.btn-close{
-background:#f3f4f6;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:10px;
-cursor:pointer;
-font-weight:bold;
-font-size:14px;
-transition:0.2s;
-}
-
-.btn-close:hover{
-background:#e5e7eb;
-transform:scale(1.02);
-}
-
-.cart-button:hover{
-transform:scale(1.08);
-}  
-
-/* BOTON LIMPIAR */
-
-.btn-clear{
-background:#ef4444;
-color:white;
-border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:10px;
-cursor:pointer;
-font-weight:bold;
-transition:0.2s;
-}
-
-.btn-clear:hover{
-background:#dc2626;
-transform:scale(1.02);
-}
-
-/* ANIMACION AGREGAR PRODUCTO */
-
-.card-added{
-animation:agregado 0.4s ease;
-}
-
-@keyframes agregado{
-
-0%{
-transform:scale(1);
-}
-
-50%{
-transform:scale(1.08);
-}
-
-100%{
-transform:scale(1);
-}
-
-}  
-
-/* ============================= */
-/* RESPONSIVE PARA CELULARES */
-/* ============================= */
-
-@media (max-width:768px){
-
-header{
-font-size:22px;
-padding:18px;
-}
-
-/* buscador */
-
-.search-bar{
-flex-direction:column;
-gap:10px;
-}
-
-#search{
-width:100%;
-}
-
-#sort{
-width:100%;
-}
-
-/* categorias */
-
-.categorias{
-justify-content:flex-start;
-overflow-x:auto;
-padding-bottom:5px;
-}
-
-.categorias button{
-flex:0 0 auto;
-font-size:13px;
-padding:7px 14px;
-}
-
-/* grid productos */
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-}
-
-/* tarjetas */
-
-.card{
-padding:10px;
-}
-
-.card img{
-height:120px;
-}
-
-.card h4{
-font-size:14px;
-min-height:38px;
-}
-
-.price{
-font-size:16px;
-}
-
-.buy-btn{
-font-size:13px;
-padding:8px;
-}
-
-/* carrito */
-
-#cartPanel{
-width:100%;
-right:-100%;
-}
-
-#cartPanel.open{
-right:0;
-}
-
-/* botones carrito */
-
-.btn-whatsapp,
-.btn-close,
-.btn-clear{
-font-size:14px;
-padding:12px;
-}
-
-/* boton carrito flotante */
-
-.cart-button{
-bottom:80px;
-right:15px;
-padding:12px 14px;
-font-size:14px;
-}
-
-/* whatsapp flotante */
-
-.whatsapp{
-width:55px;
-height:55px;
-right:15px;
-bottom:15px;
-}
-
-.whatsapp img{
-width:26px;
-}
-
-}  
 
 </style>
 
@@ -457,22 +191,10 @@ Catálogo de Productos
 <select id="sort">
 
 <option value="">Ordenar por</option>
-
-<option value="mayor">
-Precio más alto
-</option>
-
-<option value="menor">
-Precio más bajo
-</option>
-
-<option value="az">
-A-Z
-</option>
-
-<option value="za">
-Z-A
-</option>
+<option value="mayor">Precio más alto</option>
+<option value="menor">Precio más bajo</option>
+<option value="az">A-Z</option>
+<option value="za">Z-A</option>
 
 </select>
 
@@ -496,55 +218,60 @@ Z-A
 
 <div id="cartTotal" class="cart-total"></div>
 
-<button class="btn-whatsapp" onclick="enviarWhatsApp()">
-Enviar pedido por WhatsApp
-</button>
+<button onclick="limpiarCarrito()">Limpiar carrito</button>
 
-<button onclick="limpiarCarrito()" class="btn-clear">
-Limpiar carrito
-</button>
-
-<button class="btn-close" onclick="toggleCart()">
-Cerrar carrito
-</button>
+<button onclick="toggleCart()">Cerrar carrito</button>
 
 </div>
 
-<a 
-href="https://wa.me/5493401415127"
-class="whatsapp"
-target="_blank">
-
+<a href="https://wa.me/5493401415127" class="whatsapp" target="_blank">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="30">
-
 </a>
 
 <script>
 
 let productos=[]
 let categorias={}
-let carrito = JSON.parse(localStorage.getItem("carrito")) || []
+let carrito=JSON.parse(localStorage.getItem("carrito"))||[]
 
 fetch("productos.json")
-.then(response => response.json())
-.then(data => {
+.then(r=>r.json())
+.then(data=>{
 
-productos = data
+productos=data
 
-data.forEach(p => {
+data.forEach(p=>{
 
-let raw = p.category || "Otros"
-let cat = raw.split(">")[0].trim()
+let cat=(p.category||"Otros").split(">")[0].trim()
 
-if(!categorias[cat]) categorias[cat] = []
+if(!categorias[cat]) categorias[cat]=[]
 
 categorias[cat].push(p)
+
+})
+
+crearCategorias()
+
+let categoriaGuardada=localStorage.getItem("categoriaActual")
+
+if(categoriaGuardada && categorias[categoriaGuardada]){
+
+mostrarProductos(categorias[categoriaGuardada])
+
+}else{
+
+mostrarProductos(productos)
+
+}
+
+actualizarCarrito()
 
 })
 
 function crearCategorias(){
 
 let cont=document.getElementById("categorias")
+
 cont.innerHTML=""
 
 Object.keys(categorias).forEach(cat=>{
@@ -560,7 +287,7 @@ document.querySelectorAll(".categorias button")
 
 btn.classList.add("active")
 
-localStorage.setItem("categoriaActual", cat)
+localStorage.setItem("categoriaActual",cat)
 
 mostrarProductos(categorias[cat])
 
@@ -571,20 +298,21 @@ cont.appendChild(btn)
 })
 
 }
+
 function mostrarProductos(lista){
 
-let cont = document.getElementById("productos")
+let cont=document.getElementById("productos")
 
-let html = ""
+let html=""
 
-lista.forEach(p => {
+lista.forEach(p=>{
 
-html += `
+html+=`
 <div class="card">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}&categoria=${encodeURIComponent(p.category)}">
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}">
 
-<img loading="lazy" src="${p.image}">
+<img src="${p.image}" loading="lazy">
 
 </a>
 
@@ -594,9 +322,7 @@ html += `
 
 <button class="buy-btn"
 onclick="agregarCarrito('${p.name}','${p.price}')">
-
 Agregar al carrito
-
 </button>
 
 </div>
@@ -604,75 +330,7 @@ Agregar al carrito
 
 })
 
-cont.innerHTML = html
-
-}
-
-function crearCategorias(){
-
-let cont=document.getElementById("categorias")
-cont.innerHTML=""
-
-Object.keys(categorias).forEach(cat=>{
-
-let btn=document.createElement("button")
-
-btn.textContent=cat
-
-btn.onclick=()=>{
-
-document.querySelectorAll(".categorias button")
-.forEach(b=>b.classList.remove("active"))
-
-btn.classList.add("active")
-
-localStorage.setItem("categoriaActual", cat)
-
-mostrarProductos(categorias[cat])
-
-}
-
-function aplicarFiltros(){
-
-let texto = document.getElementById("search").value.toLowerCase()
-let orden = document.getElementById("sort").value
-
-let lista = productos.filter(p =>
-p.name.toLowerCase().includes(texto)
-)
-
-function precioNumero(p){
-
-return parseFloat(
-p.price
-.replace("$","")
-.replace(/\./g,"")
-.replace(",",".")
-)
-
-}
-
-switch(orden){
-
-case "mayor":
-lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
-break
-
-case "menor":
-lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
-break
-
-case "az":
-lista.sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))
-break
-
-case "za":
-lista.sort((a,b)=>b.name.localeCompare(a.name,"es",{sensitivity:"base"}))
-break
-
-}
-
-mostrarProductos(lista)
+cont.innerHTML=html
 
 }
 
@@ -680,54 +338,18 @@ function agregarCarrito(nombre,precio){
 
 let prod=carrito.find(p=>p.name===nombre)
 
-if(prod){
-prod.cantidad++
-}else{
-carrito.push({
-name:nombre,
-price:precio,
-cantidad:1
-})
-}
+if(prod) prod.cantidad++
+else carrito.push({name:nombre,price:precio,cantidad:1})
 
 actualizarCarrito()
 
-let cards=document.querySelectorAll(".card")
-
-cards.forEach(c=>{
-if(c.innerText.includes(nombre)){
-c.classList.add("card-added")
-setTimeout(()=>{c.classList.remove("card-added")},400)
-}
-})
-
-}
-
-function sumarCantidad(index){
-carrito[index].cantidad++
-actualizarCarrito()
-}
-
-function restarCantidad(index){
-
-carrito[index].cantidad--
-
-if(carrito[index].cantidad<=0){
-carrito.splice(index,1)
-}
-
-actualizarCarrito()
-
-}
-
-function eliminarProducto(index){
-carrito.splice(index,1)
-actualizarCarrito()
 }
 
 function limpiarCarrito(){
+
 carrito=[]
 actualizarCarrito()
+
 }
 
 function actualizarCarrito(){
@@ -738,79 +360,48 @@ let cantidad=0
 let cont=document.getElementById("cartItems")
 cont.innerHTML=""
 
-carrito.forEach((p,index)=>{
+carrito.forEach(p=>{
 
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
-let subtotal=precio*p.cantidad
-
-total+=subtotal
 cantidad+=p.cantidad
 
-cont.innerHTML+=`
-
-<div class="cart-item">
-
-<b>${p.name}</b><br>
-
-<div style="margin:6px 0; display:flex; gap:8px; align-items:center;">
-
-<button onclick="restarCantidad(${index})">➖</button>
-
-<span>${p.cantidad}</span>
-
-<button onclick="sumarCantidad(${index})">➕</button>
-
-<button onclick="eliminarProducto(${index})" style="margin-left:auto;">🗑</button>
-
-</div>
-
-Subtotal: $${subtotal.toLocaleString()}
-
-</div>
-
-`
+cont.innerHTML+=`<div class="cart-item">${p.name} x ${p.cantidad}</div>`
 
 })
 
 document.getElementById("contador").innerText=cantidad
-document.getElementById("cartTotal").innerHTML="Total: $" + total.toLocaleString()
 
-window.totalCompra=total
-
-localStorage.setItem("carrito", JSON.stringify(carrito))
+localStorage.setItem("carrito",JSON.stringify(carrito))
 
 }
 
 function toggleCart(){
+
 document.getElementById("cartPanel").classList.toggle("open")
+
 }
 
-function enviarWhatsApp(){
+document.getElementById("search").addEventListener("input",function(){
 
-if(carrito.length===0){
-alert("El carrito está vacío")
-return
-}
+let texto=this.value.toLowerCase()
 
-let mensaje="Hola, quiero comprar:%0A%0A"
+let lista=productos.filter(p=>p.name.toLowerCase().includes(texto))
 
-carrito.forEach(p=>{
-mensaje+=`${p.cantidad} x ${p.name} - ${p.price}%0A`
+mostrarProductos(lista)
+
 })
 
-mensaje+=`%0ATotal: $${window.totalCompra.toLocaleString()}`
+document.getElementById("sort").addEventListener("change",function(){
 
-window.open(
-`https://wa.me/5493401415127?text=${mensaje}`
-)
+let v=this.value
 
-}
+let lista=[...productos]
 
-document.getElementById("search").addEventListener("input", aplicarFiltros)
-document.getElementById("sort").addEventListener("change", aplicarFiltros)
+if(v==="az") lista.sort((a,b)=>a.name.localeCompare(b.name))
+if(v==="za") lista.sort((a,b)=>b.name.localeCompare(a.name))
+
+mostrarProductos(lista)
+
+})
 
 </script>
 
