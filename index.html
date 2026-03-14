@@ -562,7 +562,7 @@ lista.forEach(p => {
 html += `
 <div class="card">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}">
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}&categoria=${encodeURIComponent(p.category)}">
 
 <img loading="lazy" src="${p.image}">
 
@@ -606,13 +606,9 @@ document.querySelectorAll(".categorias button")
 
 btn.classList.add("active")
 
+localStorage.setItem("categoriaActual", cat)
+
 mostrarProductos(categorias[cat])
-
-}
-
-cont.appendChild(btn)
-
-})
 
 }
 
