@@ -254,6 +254,55 @@ z-index:9999;
 .aviso.show{
 opacity:1;
 transform:translateY(0);
+} 
+
+.envio-banner{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#16a34a;
+color:white;
+text-align:center;
+padding:10px;
+font-weight:bold;
+font-size:14px;
+z-index:9999;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+.envio-banner span{
+font-weight:normal;
+}
+
+.cerrar-envio{
+position:absolute;
+right:15px;
+top:8px;
+cursor:pointer;
+font-weight:bold;
+} 
+
+.pagos{
+background:white;
+padding:15px;
+margin:20px auto;
+max-width:1200px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.pagos h3{
+margin-bottom:10px;
+font-size:16px;
+color:#111827;
+}
+
+.pagos img{
+height:32px;
+margin:5px 10px;
+vertical-align:middle;
 }  
 
 </style>
@@ -262,9 +311,34 @@ transform:translateY(0);
 
 <body>
 
+<div class="envio-banner" id="envioBanner">
+
+🚚 Envíos a todo el país por solo <b>$8.000</b> —  
+🎁 Envío GRATIS en compras superiores a <b>$40.000</b>
+
+<span class="cerrar-envio" onclick="cerrarBanner()">✕</span>
+
+</div>  
+
 <header>
 Catálogo de Productos
 </header>
+
+<div class="pagos">
+
+<h3>Medios de pago disponibles</h3>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/MasterCard_Logo.png">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_Icon_2014.svg">
+
+<img src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png">
+
+<span>Transferencias bancarias</span>
+
+</div>  
 
 <div class="container">
 
@@ -654,6 +728,12 @@ window.scrollTo(0, pos)
 localStorage.removeItem("catalogo_scroll")
 
 }
+
+}  
+
+function cerrarBanner(){
+
+document.getElementById("envioBanner").style.display="none"
 
 }  
   
