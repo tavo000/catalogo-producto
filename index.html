@@ -220,6 +220,22 @@ cursor:pointer;
 background:#d1d5db;
 }  
 
+.buy-now{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+margin-top:6px;
+width:100%;
+}
+
+.buy-now:hover{
+background:#1d4ed8;
+}  
+
 </style>
 
 </head>
@@ -356,10 +372,15 @@ html+=`
 
 <div class="price">${p.price}</div>
 
-<button onclick="agregarCarrito('${p.name}','${p.price}')">
+<button class="buy-btn"
+onclick="agregarCarrito('${p.name}','${p.price}')">
 Agregar al carrito
 </button>
 
+<button class="buy-now"
+onclick="comprarAhora('${p.name}','${p.price}')">
+Comprar ahora
+</button>
 </div>
 
 `
@@ -536,6 +557,21 @@ if(v==="za") lista.sort((a,b)=>b.name.localeCompare(a.name))
 mostrarProductos(lista)
 
 })
+
+function comprarAhora(nombre,precio){
+
+let mensaje="🛒 *Consulta de producto*%0A%0A"
+
+mensaje+=`Producto: ${nombre}%0A`
+mensaje+=`Precio: ${precio}%0A%0A`
+
+mensaje+="📦 Enviado desde el catálogo online."
+
+window.open(
+`https://wa.me/5493401415127?text=${mensaje}`
+)
+
+}  
 
 </script>
 
