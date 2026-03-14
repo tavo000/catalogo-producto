@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 
@@ -46,6 +46,16 @@ border-radius:8px;
 font-size:18px;
 }
 
+.btn-volver{
+margin:20px;
+padding:10px 16px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
 @media(max-width:768px){
 
 .container{
@@ -73,14 +83,16 @@ grid-template-columns:1fr;
 <p id="descripcion"></p>
 
 <a id="whatsapp" class="buy" target="_blank">
-
 Comprar por WhatsApp
-
 </a>
 
 </div>
 
 </div>
+
+<button onclick="volverCatalogo()" class="btn-volver">
+← Volver al catálogo
+</button>
 
 <script>
 
@@ -88,10 +100,10 @@ const params = new URLSearchParams(window.location.search)
 
 const nombreProducto = params.get("nombre")
 const categoriaProducto = params.get("categoria")
-  
+
 fetch("productos.json")
-.then(r=>r.json())
-.then(data=>{
+.then(r => r.json())
+.then(data => {
 
 const producto = data.find(p => p.name === nombreProducto)
 
@@ -101,33 +113,25 @@ document.getElementById("nombre").innerText = producto.name
 document.getElementById("precio").innerText = producto.price
 document.getElementById("imagen").src = producto.image
 
-}
-
-})
-document.getElementById("imagen").src = producto.image
-document.getElementById("nombre").innerText = producto.name
-document.getElementById("precio").innerText = producto.price
-
 document.getElementById("descripcion").innerText =
 "Producto disponible. Consulte disponibilidad y envío."
 
 document.getElementById("whatsapp").href =
-`https://wa.me/5493401511815?text=Hola quiero comprar: ${encodeURIComponent(producto.name)}`
+`https://wa.me/5493401415127?text=Hola quiero comprar: ${encodeURIComponent(producto.name)}`
+
+document.title = producto.name
+
+}
 
 })
 
 function volverCatalogo(){
 
-window.location.href = 
-"index.html?categoria=" + encodeURIComponent(categoriaProducto)
+window.location.href = "index.html"
 
-}  
-<button onclick="volverCatalogo()" class="btn-volver">
-← Volver al catálogo
-</button>
-  
+}
+
 </script>
 
 </body>
-
 </html>
