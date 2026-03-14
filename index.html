@@ -153,6 +153,7 @@ box-shadow:-5px 0 20px rgba(0,0,0,0.2);
 padding:20px;
 transition:0.3s;
 overflow:auto;
+z-index:900;  
 }
 
 #cartPanel.open{
@@ -171,6 +172,21 @@ margin-top:15px;
 }
 
 /* BOTONES CARRITO */
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+z-index:2000;
+}  
 
 .btn-whatsapp{
 background:#25D366;
@@ -208,6 +224,10 @@ transition:0.2s;
 background:#e5e7eb;
 transform:scale(1.02);
 }
+
+.cart-button:hover{
+transform:scale(1.08);
+}  
 
 /* BOTON LIMPIAR */
 
@@ -247,6 +267,121 @@ transform:scale(1.08);
 
 100%{
 transform:scale(1);
+}
+
+}  
+
+/* ============================= */
+/* RESPONSIVE PARA CELULARES */
+/* ============================= */
+
+@media (max-width:768px){
+
+header{
+font-size:22px;
+padding:18px;
+}
+
+/* buscador */
+
+.search-bar{
+flex-direction:column;
+gap:10px;
+}
+
+#search{
+width:100%;
+}
+
+#sort{
+width:100%;
+}
+
+/* categorias */
+
+.categorias{
+justify-content:flex-start;
+overflow-x:auto;
+padding-bottom:5px;
+}
+
+.categorias button{
+flex:0 0 auto;
+font-size:13px;
+padding:7px 14px;
+}
+
+/* grid productos */
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+/* tarjetas */
+
+.card{
+padding:10px;
+}
+
+.card img{
+height:120px;
+}
+
+.card h4{
+font-size:14px;
+min-height:38px;
+}
+
+.price{
+font-size:16px;
+}
+
+.buy-btn{
+font-size:13px;
+padding:8px;
+}
+
+/* carrito */
+
+#cartPanel{
+width:100%;
+right:-100%;
+}
+
+#cartPanel.open{
+right:0;
+}
+
+/* botones carrito */
+
+.btn-whatsapp,
+.btn-close,
+.btn-clear{
+font-size:14px;
+padding:12px;
+}
+
+/* boton carrito flotante */
+
+.cart-button{
+bottom:80px;
+right:15px;
+padding:12px 14px;
+font-size:14px;
+}
+
+/* whatsapp flotante */
+
+.whatsapp{
+width:55px;
+height:55px;
+right:15px;
+bottom:15px;
+}
+
+.whatsapp img{
+width:26px;
 }
 
 }  
@@ -304,14 +439,6 @@ Enviar pedido por WhatsApp
 <button onclick="limpiarCarrito()" class="btn-clear">
 Limpiar carrito
 </button>
-
-<button class="btn-close" onclick="toggleCart()">
-Cerrar carrito
-</button>
-
-<button onclick="limpiarCarrito()" class="btn-close">
-Limpiar carrito
-</button>  
 
 <button class="btn-close" onclick="toggleCart()">
 Cerrar carrito
