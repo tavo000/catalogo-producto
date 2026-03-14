@@ -173,6 +173,53 @@ align-items:center;
 justify-content:center;
 }
 
+.btn-whatsapp{
+background:#25D366;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-whatsapp:hover{
+background:#1ebe5d;
+}
+
+.btn-clear{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-clear:hover{
+background:#dc2626;
+}
+
+.btn-close{
+background:#e5e7eb;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-close:hover{
+background:#d1d5db;
+}  
+
 </style>
 
 </head>
@@ -215,12 +262,17 @@ Catálogo de Productos
 
 <div id="cartTotal" class="cart-total"></div>
 
-<button onclick="enviarWhatsApp()">Enviar pedido por WhatsApp</button>
+<button class="btn-whatsapp" onclick="enviarWhatsApp()">
+Enviar pedido por WhatsApp
+</button>
 
-<button onclick="limpiarCarrito()">Limpiar carrito</button>
+<button class="btn-clear" onclick="limpiarCarrito()">
+Limpiar carrito
+</button>
 
-<button onclick="toggleCart()">Cerrar carrito</button>
-
+<button class="btn-close" onclick="toggleCart()">
+Cerrar carrito
+</button>
 </div>
 
 <a href="https://wa.me/5493401415127" class="whatsapp" target="_blank">
@@ -422,21 +474,46 @@ document.getElementById("cartPanel").classList.toggle("open")
 function enviarWhatsApp(){
 
 if(carrito.length===0){
+
 alert("El carrito está vacío")
+
 return
+
 }
 
-let mensaje="🛒 *Nuevo pedido*%0A%0A"
+let mensaje="🛒 *Nuevo pedido desde el catálogo*%0A%0A"
 
 carrito.forEach(p=>{
+
 mensaje+=`• ${p.name}%0A`
 mensaje+=`Cantidad: ${p.cantidad}%0A`
 mensaje+=`Precio: ${p.price}%0A%0A`
+
 })
 
-mensaje+="Pedido enviado desde el catálogo online."
+mensaje+="📦 Pedido generado desde el catálogo online."
 
-window.open(`https://wa.me/5493401415127?text=${mensaje}`)
+window.open(
+`https://wa.me/5493401415127?text=${mensaje}`
+)
+
+}
+
+let mensaje="🛒 *Nuevo pedido desde el catálogo*%0A%0A"
+
+carrito.forEach(p=>{
+
+mensaje+=`• ${p.name}%0A`
+mensaje+=`Cantidad: ${p.cantidad}%0A`
+mensaje+=`Precio: ${p.price}%0A%0A`
+
+})
+
+mensaje+="📦 Pedido generado desde el catálogo online."
+
+window.open(
+`https://wa.me/5493401415127?text=${mensaje}`
+)
 
 }
 
