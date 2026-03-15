@@ -214,29 +214,146 @@ z-index:9999;
 
 /* PAGOS */
 
+/* ---------- BLOQUE PAGOS Y ENVÍOS ---------- */
+
 .pagos{
-background:white;
-padding:20px;
-margin:20px auto;
+
+background:linear-gradient(180deg,#ffffff,#f9fafb);
+
+padding:30px;
+
+margin:30px auto;
+
 max-width:1200px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+border-radius:14px;
+
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
 text-align:center;
+
+border:1px solid #e5e7eb;
+
+}
+
+/* TITULOS */
+
+.pagos h3{
+
+font-size:18px;
+
+color:#111827;
+
+margin-bottom:15px;
+
+font-weight:700;
+
+}
+
+/* SEPARADOR */
+
+.pagos hr{
+
+border:none;
+
+border-top:1px solid #e5e7eb;
+
+margin:25px 0;
+
+}
+
+/* CONTENEDORES */
+
+.pagos-logos,
+.envios-logos{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+margin-top:10px;
+
+}
+
+/* ICONOS */
+
+.pagos img,
+.envios-logos img{
+
+height:40px;
+
+object-fit:contain;
+
+padding:6px;
+
+background:white;
+
+border-radius:8px;
+
+border:1px solid #e5e7eb;
+
+box-shadow:0 3px 8px rgba(0,0,0,0.05);
+
+transition:0.25s;
+
+}
+
+/* HOVER ICONOS */
+
+.pagos img:hover,
+.envios-logos img:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 6px 16px rgba(0,0,0,0.12);
+
+}
+
+/* TEXTOS */
+
+.pagos span,
+.envios-logos span{
+
+font-size:14px;
+
+color:#374151;
+
+font-weight:500;
+
+margin-right:10px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.pagos{
+
+padding:20px;
+
 }
 
 .pagos-logos,
 .envios-logos{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:20px;
-margin-top:10px;
+
+gap:15px;
+
 }
 
 .pagos img,
 .envios-logos img{
+
 height:34px;
-object-fit:contain;
+
+}
+
 }
 
 </style>
