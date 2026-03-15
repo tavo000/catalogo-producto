@@ -712,61 +712,7 @@ cont.innerHTML=html
 
 }
 
-// BUSQUEDA + ORDENAMIENTO
 
-function aplicarFiltros(){
-
-let texto = document.getElementById("search").value.toLowerCase()
-let orden = document.getElementById("sort").value
-
-let categoriaActiva = localStorage.getItem("categoriaActiva")
-
-let lista = categoriaActiva && categorias[categoriaActiva]
-? [...categorias[categoriaActiva]]
-: [...productos]
-
-// FILTRO BUSQUEDA
-
-if(texto){
-
-lista = lista.filter(p =>
-p.name.toLowerCase().includes(texto)
-)
-
-}
-
-// ORDENAMIENTO
-
-function precioNumero(p){
-return parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-}
-
-if(orden==="az"){
-lista.sort((a,b)=>a.name.localeCompare(b.name))
-}
-
-if(orden==="za"){
-lista.sort((a,b)=>b.name.localeCompare(a.name))
-}
-
-if(orden==="menor"){
-lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
-}
-
-if(orden==="mayor"){
-lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
-}
-
-mostrarProductos(lista)
-
-}
-
-// EVENTOS
-
-document.getElementById("search").addEventListener("input",aplicarFiltros)
-document.getElementById("sort").addEventListener("change",aplicarFiltros)  
 
 function agregarCarrito(nombre,precio){
 
@@ -891,6 +837,62 @@ let mensaje=`Producto: ${nombre}%0APrecio: ${precio}`
 window.open(`https://wa.me/5493401415127?text=${mensaje}`)
 
 }
+
+// BUSQUEDA + ORDENAMIENTO
+
+function aplicarFiltros(){
+
+let texto = document.getElementById("search").value.toLowerCase()
+let orden = document.getElementById("sort").value
+
+let categoriaActiva = localStorage.getItem("categoriaActiva")
+
+let lista = categoriaActiva && categorias[categoriaActiva]
+? [...categorias[categoriaActiva]]
+: [...productos]
+
+// FILTRO BUSQUEDA
+
+if(texto){
+
+lista = lista.filter(p =>
+p.name.toLowerCase().includes(texto)
+)
+
+}
+
+// ORDENAMIENTO
+
+function precioNumero(p){
+return parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+}
+
+if(orden==="az"){
+lista.sort((a,b)=>a.name.localeCompare(b.name))
+}
+
+if(orden==="za"){
+lista.sort((a,b)=>b.name.localeCompare(a.name))
+}
+
+if(orden==="menor"){
+lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
+}
+
+if(orden==="mayor"){
+lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
+}
+
+mostrarProductos(lista)
+
+}
+
+// EVENTOS
+
+document.getElementById("search").addEventListener("input",aplicarFiltros)
+document.getElementById("sort").addEventListener("change",aplicarFiltros)    
 
 </script>
 
