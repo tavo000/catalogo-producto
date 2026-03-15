@@ -356,6 +356,79 @@ height:34px;
 
 }
 
+/* BARRA DE CONFIANZA */
+
+.barra-confianza{
+
+background:white;
+
+border-top:1px solid #e5e7eb;
+border-bottom:1px solid #e5e7eb;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+gap:40px;
+
+padding:14px 10px;
+
+flex-wrap:wrap;
+
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+
+}
+
+/* ITEMS */
+
+.confianza-item{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+font-weight:500;
+
+color:#374151;
+
+}
+
+/* ICONOS */
+
+.confianza-item span{
+
+font-size:18px;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.barra-confianza{
+
+gap:18px;
+
+padding:12px 6px;
+
+}
+
+.confianza-item{
+
+font-size:13px;
+
+}
+
+.confianza-item span{
+
+font-size:16px;
+
+}
+
+}  
+
 </style>
 </head>
 
@@ -366,6 +439,35 @@ height:34px;
 </div>
 
 <header>Catálogo de Productos</header>
+
+<div class="barra-confianza">
+
+<div class="confianza-item">
+<span>🚚</span>
+<p>Envíos a todo el país</p>
+</div>
+
+<div class="confianza-item">
+<span>💳</span>
+<p>Tarjetas de crédito</p>
+</div>
+
+<div class="confianza-item">
+<span>🔒</span>
+<p>Compra segura</p>
+</div>
+
+<div class="confianza-item">
+<span>📦</span>
+<p>Seguimiento del envío</p>
+</div>
+
+<div class="confianza-item">
+<span>✔</span>
+<p>Garantía de producto</p>
+</div>
+
+</div>  
 
 <div class="pagos">
 
