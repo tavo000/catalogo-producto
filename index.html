@@ -88,7 +88,10 @@ border-radius:12px;
 padding:18px;
 text-align:center;
 box-shadow:0 6px 15px rgba(0,0,0,0.08);
-transition:0.2s;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+min-height:380px;
 }
 
 .card:hover{
@@ -99,11 +102,19 @@ box-shadow:0 10px 25px rgba(0,0,0,0.15);
 
 .card img{
 width:100%;
-height:260px;
-object-fit:cover;
-border-radius:8px;
-margin-bottom:10px;
+height:220px;
+object-fit:contain;
+display:block;
+margin:0 auto 15px auto;
 }
+
+.card a{
+display:block;
+height:220px;
+display:flex;
+align-items:center;
+justify-content:center;
+}  
 
 .card h4{
 font-size:15px;
