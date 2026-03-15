@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 
@@ -46,12 +46,14 @@ border-radius:8px;
 font-size:18px;
 }
 
-@media(max-width:768px){
-
-.container{
-grid-template-columns:1fr;
-}
-
+.btn-volver{
+margin:20px;
+padding:10px 16px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:6px;
+cursor:pointer;
 }
 
 </style>
@@ -73,45 +75,45 @@ grid-template-columns:1fr;
 <p id="descripcion"></p>
 
 <a id="whatsapp" class="buy" target="_blank">
-
 Comprar por WhatsApp
-
 </a>
 
 </div>
 
 </div>
 
+<button onclick="window.location.href='index.html'" class="btn-volver">
+← Volver al catálogo
+</button>
+
 <script>
 
-const params = new URLSearchParams(window.location.search)
-const nombre = params.get("nombre")
+const params=new URLSearchParams(window.location.search)
 
-fetch("./productos.json")
+const nombreProducto=params.get("nombre")
+
+fetch("productos.json")
 .then(r=>r.json())
 .then(data=>{
 
-const producto = data.find(p=>p.name === nombre)
+const producto=data.find(p=>p.name===nombreProducto)
 
-if(!producto){
-document.body.innerHTML="Producto no encontrado"
-return
+if(producto){
+
+document.getElementById("nombre").innerText=producto.name
+document.getElementById("precio").innerText=producto.price
+document.getElementById("imagen").src=producto.image
+
+document.getElementById("descripcion").innerText="Producto disponible."
+
+document.getElementById("whatsapp").href=
+`https://wa.me/5493401415127?text=Hola quiero comprar ${encodeURIComponent(producto.name)}`
+
 }
-
-document.getElementById("imagen").src = producto.image
-document.getElementById("nombre").innerText = producto.name
-document.getElementById("precio").innerText = producto.price
-
-document.getElementById("descripcion").innerText =
-"Producto disponible. Consulte disponibilidad y envío."
-
-document.getElementById("whatsapp").href =
-`https://wa.me/5493401511815?text=Hola quiero comprar: ${encodeURIComponent(producto.name)}`
 
 })
 
 </script>
 
 </body>
-
 </html>
