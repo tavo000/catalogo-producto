@@ -733,21 +733,84 @@ function actualizarCarrito(){
 let total=0
 let cantidad=0
 
-carrito.forEach(p=>{
+let cont=document.getElementById("cartItems")
+cont.innerHTML=""
 
-let precio=parseFloat(p.price.replace("$","").replace(/\./g,"").replace(",","."))
+carrito.forEach((p,i)=>{
 
-total+=precio*p.cantidad
+let precio=parseFloat(
+p.price.replace("$","").replace(/\./g,"").replace(",",".")
+)
+
+let subtotal=precio*p.cantidad
+
+total+=subtotal
 cantidad+=p.cantidad
+
+cont.innerHTML+=`
+
+<div class="cart-item">
+
+<b>${p.name}</b>
+
+<div>
+
+<button onclick="restarCantidad(${i})">➖</button>
+
+${p.cantidad}
+
+<button onclick="sumarCantidad(${i})">➕</button>
+
+<button onclick="eliminarProducto(${i})">🗑</button>
+
+</div>
+
+Subtotal: $${subtotal.toLocaleString()}
+
+</div>
+
+`
 
 })
 
 document.getElementById("contador").innerText=cantidad
-document.getElementById("cartTotal").innerHTML="Total: $"+total.toLocaleString()
+
+document.getElementById("cartTotal").innerHTML=
+"Total: $"+total.toLocaleString()
 
 localStorage.setItem("carrito",JSON.stringify(carrito))
 
 }
+
+function sumarCantidad(i){
+
+carrito[i].cantidad++
+
+actualizarCarrito()
+
+}
+
+function restarCantidad(i){
+
+carrito[i].cantidad--
+
+if(carrito[i].cantidad<=0){
+
+carrito.splice(i,1)
+
+}
+
+actualizarCarrito()
+
+}
+
+function eliminarProducto(i){
+
+carrito.splice(i,1)
+
+actualizarCarrito()
+
+}  
 
 function toggleCart(){
 document.getElementById("cartPanel").classList.toggle("open")
