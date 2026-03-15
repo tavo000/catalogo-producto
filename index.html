@@ -471,7 +471,27 @@ categorias[cat].push(p)
 })
 
 crearCategorias()
+
+let categoriaGuardada = localStorage.getItem("categoriaActiva")
+
+if(categoriaGuardada && categorias[categoriaGuardada]){
+
+mostrarProductos(categorias[categoriaGuardada])
+
+setTimeout(()=>{
+document.querySelectorAll(".categorias button").forEach(btn=>{
+if(btn.innerText===categoriaGuardada){
+btn.classList.add("active")
+}
+})
+},50)
+
+}else{
+
 mostrarProductos(productos)
+
+}
+
 actualizarCarrito()
 
 })
@@ -486,11 +506,16 @@ let btn=document.createElement("button")
 btn.textContent=cat
 
 btn.onclick=()=>{
+
 document.querySelectorAll(".categorias button")
 .forEach(b=>b.classList.remove("active"))
 
 btn.classList.add("active")
+
+localStorage.setItem("categoriaActiva",cat)
+
 mostrarProductos(categorias[cat])
+
 }
 
 cont.appendChild(btn)
@@ -510,8 +535,8 @@ lista.forEach(p=>{
 html+=`
 
 <div class="card">
+<a href="producto.html?nombre=${encodeURIComponent(p.name)}&categoria=${encodeURIComponent(p.category)}">
 
-<a href="producto.html?nombre=${encodeURIComponent(p.name)}">
 <img src="${p.image}">
 </a>
 
