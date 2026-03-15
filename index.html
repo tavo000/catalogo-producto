@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo de Productos</title>
@@ -223,263 +224,14 @@ cursor:pointer;
 .btn-close{
 background:#e5e7eb;
 border:none;
-padding:12px;
-border-radius:8px;
-width:100%;
-margin-top:10px;
-cursor:pointer;
-}  
-
-/* BANNER ENVIO */
-
-.envio-banner{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:#16a34a;
-color:white;
-text-align:center;
-padding:10px;
-font-weight:bold;
-z-index:9999;
-}
-
-/* PAGOS */
-
-/* ---------- BLOQUE PAGOS Y ENVÍOS ---------- */
-
-.pagos{
-
-background:linear-gradient(180deg,#ffffff,#f9fafb);
-
-padding:30px;
-
-margin:30px auto;
-
-max-width:1200px;
-
-border-radius:14px;
-
-box-shadow:0 8px 25px rgba(0,0,0,0.08);
-
-text-align:center;
-
-border:1px solid #e5e7eb;
-
-}
-
-/* TITULOS */
-
-.pagos h3{
-
-font-size:18px;
-
-color:#111827;
-
-margin-bottom:15px;
-
-font-weight:700;
-
-}
-
-/* SEPARADOR */
-
-.pagos hr{
-
-border:none;
-
-border-top:1px solid #e5e7eb;
-
-margin:25px 0;
-
-}
-
-/* CONTENEDORES */
-
-.pagos-logos,
-.envios-logos{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-flex-wrap:wrap;
-
-gap:25px;
-
-margin-top:10px;
-
-}
-
-/* ICONOS */
-
-.pagos img,
-.envios-logos img{
-
-height:40px;
-
-object-fit:contain;
-
-padding:6px;
-
-background:white;
-
-border-radius:8px;
-
-border:1px solid #e5e7eb;
-
-box-shadow:0 3px 8px rgba(0,0,0,0.05);
-
-transition:0.25s;
-
-}
-
-/* HOVER ICONOS */
-
-.pagos img:hover,
-.envios-logos img:hover{
-
-transform:scale(1.08);
-
-box-shadow:0 6px 16px rgba(0,0,0,0.12);
-
-}
-
-/* TEXTOS */
-
-.pagos span,
-.envios-logos span{
-
+padding:8px 14px;
+border-radius:20px;
 font-size:14px;
-
-color:#374151;
-
-font-weight:500;
-
-margin-right:10px;
-
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-.pagos{
-
-padding:20px;
-
-}
-
-.pagos-logos,
-.envios-logos{
-
-gap:15px;
-
-}
-
-.pagos img,
-.envios-logos img{
-
-height:34px;
-
-}
-
-}
-
-/* BARRA DE CONFIANZA */
-
-.barra-confianza{
-
-background:white;
-
-border-top:1px solid #e5e7eb;
-border-bottom:1px solid #e5e7eb;
-
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-gap:40px;
-
-padding:14px 10px;
-
-flex-wrap:wrap;
-
-box-shadow:0 4px 12px rgba(0,0,0,0.05);
-
-}
-
-/* ITEMS */
-
-.confianza-item{
-
-display:flex;
-align-items:center;
-gap:8px;
-
-font-size:14px;
-font-weight:500;
-
-color:#374151;
-
-}
-
-/* ICONOS */
-
-.confianza-item span{
-
-font-size:18px;
-
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-.barra-confianza{
-
-gap:18px;
-
-padding:12px 6px;
-
-}
-
-.confianza-item{
-
-font-size:13px;
-
-}
-
-.confianza-item span{
-
-font-size:16px;
-
-}
-
-}  
-
-#btnTop{
-position:fixed;
-bottom:90px;
-left:20px;
-background:#111827;
-color:white;
-border:none;
-width:45px;
-height:45px;
-border-radius:50%;
-font-size:20px;
 cursor:pointer;
-display:none;
-z-index:9999;
 }
 
-#btnTop:hover{
-background:#2563eb;
+.categoria-lista button:hover{
+background:#d1d5db;
 }
 
 </style>
@@ -487,85 +239,11 @@ background:#2563eb;
 
 <body>
 
-<div class="envio-banner">
-🚚 Envíos a todo el país por solo <b>$8.000</b> — 🎁 Envío GRATIS en compras superiores a <b>$40.000</b>
-</div>
+<header>
 
-<header>Catálogo de Productos</header>
+Catálogo de productos
 
-<div class="barra-confianza">
-
-<div class="confianza-item">
-<span>🚚</span>
-<p>Envíos a todo el país</p>
-</div>
-
-<div class="confianza-item">
-<span>💳</span>
-<p>Tarjetas de crédito</p>
-</div>
-
-<div class="confianza-item">
-<span>🔒</span>
-<p>Compra segura</p>
-</div>
-
-<div class="confianza-item">
-<span>📦</span>
-<p>Seguimiento del envío</p>
-</div>
-
-<div class="confianza-item">
-<span>✔</span>
-<p>Garantía de producto</p>
-</div>
-
-</div>  
-
-<div class="pagos">
-
-<h3>💳 Medios de pago</h3>
-
-<div class="pagos-logos">
-
-<img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa">
-<img src="https://cdn-icons-png.flaticon.com/512/196/196561.png" alt="Mastercard">
-
-<span>Tarjetas de crédito</span>
-
-<span>1 y 3 cuotas sin interés</span>
-
-<img src="https://cdn-icons-png.flaticon.com/512/2331/2331941.png" alt="Transferencia">
-
-<span>Transferencia bancaria</span>
-
-</div>
-
-<hr>
-
-<h3>📦 Medios de envío</h3>
-
-<div class="envios-logos">
-
-<img src="img/envios/correo-argentino.png" alt="Correo Argentino">
-<span>Correo Argentino</span>
-
-<img src="img/envios/andreani.png" alt="Andreani">
-<span>Andreani</span>
-
-<img src="img/envios/oca.png" alt="OCA">
-<span>OCA</span>
-
-<img src="img/envios/via-cargo.png" alt="Vía Cargo">
-<span>Vía Cargo</span>
-
-<img src="img/envios/credifin.png" alt="Credifin">
-<span>Credifin</span>
-
-</div>
-
-</div>
-</div>
+</header>
 
 <div class="container">
 
@@ -619,7 +297,7 @@ Cerrar carrito
 <script>
 
 let productos=[]
-let productosVisibles=[]
+let carrito=[]
 let categorias={}
 let carrito=JSON.parse(localStorage.getItem("carrito"))||[]
 
@@ -737,161 +415,19 @@ function agregarCarrito(nombre,precio){
 
 let prod=carrito.find(p=>p.name===nombre)
 
-if(prod) prod.cantidad++
-else carrito.push({name:nombre,price:precio,cantidad:1})
+if(item){
 
-actualizarCarrito()
+item.qty++
 
-}
+}else{
 
-function limpiarCarrito(){
-carrito=[]
-actualizarCarrito()
-}
-
-function actualizarCarrito(){
-
-let total=0
-let cantidad=0
-
-let cont=document.getElementById("cartItems")
-cont.innerHTML=""
-
-carrito.forEach((p,i)=>{
-
-let precio=parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-
-let subtotal=precio*p.cantidad
-
-total+=subtotal
-cantidad+=p.cantidad
-
-cont.innerHTML+=`
-
-<div class="cart-item">
-
-<b>${p.name}</b>
-
-<div>
-
-<button onclick="restarCantidad(${i})">➖</button>
-
-${p.cantidad}
-
-<button onclick="sumarCantidad(${i})">➕</button>
-
-<button onclick="eliminarProducto(${i})">🗑</button>
-
-</div>
-
-Subtotal: $${subtotal.toLocaleString()}
-
-</div>
-
-`
-
-})
-
-document.getElementById("contador").innerText=cantidad
-
-document.getElementById("cartTotal").innerHTML=
-"Total: $"+total.toLocaleString()
-
-localStorage.setItem("carrito",JSON.stringify(carrito))
+carrito.push({name:nombre,qty:1})
 
 }
 
-function sumarCantidad(i){
-
-carrito[i].cantidad++
-
-actualizarCarrito()
+document.getElementById("cartCount").innerText=carrito.length
 
 }
-
-function restarCantidad(i){
-
-carrito[i].cantidad--
-
-if(carrito[i].cantidad<=0){
-
-carrito.splice(i,1)
-
-}
-
-actualizarCarrito()
-
-}
-
-function eliminarProducto(i){
-
-carrito.splice(i,1)
-
-actualizarCarrito()
-
-}  
-
-function toggleCart(){
-document.getElementById("cartPanel").classList.toggle("open")
-}
-
-function enviarWhatsApp(){
-
-let mensaje="Pedido:%0A"
-
-carrito.forEach(p=>{
-mensaje+=`${p.cantidad} x ${p.name}%0A`
-})
-
-window.open(`https://wa.me/5493401415127?text=${mensaje}`)
-
-}
-
-function comprarAhora(nombre,precio){
-
-let mensaje=`Producto: ${nombre}%0APrecio: ${precio}`
-
-window.open(`https://wa.me/5493401415127?text=${mensaje}`)
-
-}
-
-document.getElementById("sort").addEventListener("change", function(){
-
-let v = this.value
-let lista = [...productosVisibles]
-
-function precioNumero(p){
-return parseFloat(
-p.price.replace("$","").replace(/\./g,"").replace(",",".")
-)
-}
-
-if(v === "az"){
-lista.sort((a,b)=>a.name.localeCompare(b.name))
-}
-
-if(v === "za"){
-lista.sort((a,b)=>b.name.localeCompare(a.name))
-}
-
-if(v === "menor"){
-lista.sort((a,b)=>precioNumero(a)-precioNumero(b))
-}
-
-if(v === "mayor"){
-lista.sort((a,b)=>precioNumero(b)-precioNumero(a))
-}
-
-mostrarProductos(lista)
-
-})
-
-window.addEventListener("scroll",function(){
-let btn=document.getElementById("btnTop")
-btn.style.display = window.scrollY>300 ? "block" : "none"
-})
 
 </script>
 
@@ -899,5 +435,6 @@ btn.style.display = window.scrollY>300 ? "block" : "none"
 
 </body>
 </html>
+
 
 
