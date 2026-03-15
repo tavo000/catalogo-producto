@@ -197,6 +197,39 @@ align-items:center;
 justify-content:center;
 }
 
+.btn-whatsapp{
+background:#25D366;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-clear{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}
+
+.btn-close{
+background:#e5e7eb;
+border:none;
+padding:12px;
+border-radius:8px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}  
+
 /* BANNER ENVIO */
 
 .envio-banner{
@@ -538,12 +571,25 @@ font-size:16px;
 </div>
 
 <div id="cartPanel">
+
 <h2>Tu carrito</h2>
+
 <div id="cartItems"></div>
-<div id="cartTotal"></div>
-<button onclick="enviarWhatsApp()">Enviar pedido por WhatsApp</button>
-<button onclick="limpiarCarrito()">Limpiar carrito</button>
-<button onclick="toggleCart()">Cerrar carrito</button>
+
+<div id="cartTotal" class="cart-total"></div>
+
+<button class="btn-whatsapp" onclick="enviarWhatsApp()">
+Enviar pedido por WhatsApp
+</button>
+
+<button class="btn-clear" onclick="limpiarCarrito()">
+Limpiar carrito
+</button>
+
+<button class="btn-close" onclick="toggleCart()">
+Cerrar carrito
+</button>
+
 </div>
 
 <a href="https://wa.me/5493401415127" class="whatsapp" target="_blank">
